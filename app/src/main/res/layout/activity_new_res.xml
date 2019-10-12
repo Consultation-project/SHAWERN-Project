@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewResivActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.NoActionBar"
+        tools:ignore="MissingConstraints">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="?attr/colorPrimary">
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/untitleddesign">
+
+        <ImageView
+            android:layout_width="125dp"
+            android:layout_height="122dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="150dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/calendar"
+            tools:layout_editor_absoluteX="145dp"
+            tools:layout_editor_absoluteY="130dp" />
+
+        <EditText
+            android:id="@+id/tickit_time"
+            android:layout_width="255dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tickit_date"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="100dp"
+            android:editable="false"
+            android:hint="Time"
+            android:inputType="time"
+            android:scrollHorizontally="false"
+            android:textColorHighlight="@android:color/holo_blue_bright"
+            android:textColorLink="@android:color/holo_blue_bright"
+            android:textCursorDrawable="@android:color/holo_blue_bright" />
+
+        <EditText
+            android:id="@+id/tickit_date"
+            android:layout_width="255dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/teenscount"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="-100dp"
+            android:editable="false"
+            android:hint="@string/date"
+            android:inputType="textMultiLine|datetime"
+            android:scrollHorizontally="false"
+            android:textColorHighlight="@android:color/holo_blue_bright"
+            android:textColorLink="@android:color/holo_blue_bright"
+            android:textCursorDrawable="@android:color/holo_blue_bright" />
+
+
+        <Button
+            android:id="@+id/fab_submit_post"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="120dp"
+            android:layout_marginEnd="120dp"
+            android:layout_marginLeft="120dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="100dp"
+            android:text="Save"
+            android:background="@drawable/border"
+            android:textColor="@color/white"/>
+
+        <Button
+            android:id="@+id/CancBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="120dp"
+            android:layout_marginEnd="120dp"
+            android:layout_marginLeft="120dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="10dp"
+            android:text="Cancel"
+            android:background="@drawable/border"
+            android:textColor="@color/white"/>
+
+
+        <TextView
+            android:id="@+id/lbltime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tickit_time"
+            android:layout_marginTop="-100dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="20dp"
+            android:text=". "
+            android:textColor="#334355" />
+    </LinearLayout>
+</RelativeLayout>

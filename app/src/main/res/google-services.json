@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "515061537991",
+    "firebase_url": "https://shawirni-68b66.firebaseio.com",
+    "project_id": "shawirni-68b66",
+    "storage_bucket": "shawirni-68b66.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:515061537991:android:5c24c660781f59fb4bf2e2",
+        "android_client_info": {
+          "package_name": "com.example.shawerni"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "515061537991-s6p2c04n5f466rmj3thcfqel9sodkfou.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shawerni",
+            "certificate_hash": "f5df748b6652249632a71f3fa67f135e9918fff2"
+          }
+        },
+        {
+          "client_id": "515061537991-5ki1g3kfhcea6orcc7nm6ntp1ov3ql7p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkbktzO9tMuENx9QPjLS5dN3lpMWPFskk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "515061537991-5ki1g3kfhcea6orcc7nm6ntp1ov3ql7p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

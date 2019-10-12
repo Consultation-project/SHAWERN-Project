@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainListActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.NoActionBar"
+        tools:ignore="MissingConstraints">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="?attr/colorPrimary">
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/untitleddesign">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="100dp"
+            android:src="@drawable/abd" />
+
+        <TextView
+            android:id="@+id/listdata"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:text="NAME"
+            android:textColor="#334355"
+            android:textSize="15dp" />
+
+
+        <LinearLayout
+            android:id="@+id/ii"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/listdata"
+            android:layout_marginLeft="70dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/mainIcon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/mortarboard"
+
+                android:src="@drawable/mortarboard" />
+
+            <TextView
+                android:id="@+id/txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Certification"
+                android:textColor="#334355"
+                android:textSize="18dp" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/certificate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ii"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
+            android:text="Certification"
+            android:textColor="#334355"
+            android:textSize="15dp"
+
+            />
+
+
+        <Button
+            android:id="@+id/reserved"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="120dp"
+            android:layout_marginEnd="120dp"
+            android:layout_marginLeft="120dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="100dp"
+            android:text="Reserve"
+            android:background="@drawable/border"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+</RelativeLayout>
