@@ -159,7 +159,6 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
     }
 
  /* boolean isDigits = TextUtils.isDigitsOnly(edtDigits.getText().toString());
-
     public boolean isDigits(String number){
         if(!TextUtils.isEmpty(number)){
             return TextUtils.isDigitsOnly(number);

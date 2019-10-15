@@ -6,47 +6,25 @@ import java.util.Map;
 
 public class ConModule {
 
-
-
-
-
-
     private String name;
     private String password;
     private String email;
     private String phoneNum;
     private String id;
     private String major;
-    private String path;
+    private String mImageUrl;
 
-    public String getPath() {
-        return path;
+    public ConModule() {
     }
 
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-
-    public String getPickedImageUri() {
-        return pickedImageUri;
-    }
-
-    public void setPickedImageUri(String pickedImageUri) {
-        this.pickedImageUri = pickedImageUri;
-    }
-
-    private String pickedImageUri ;
-
-
-    public ConModule(String id , String major , String email, String name, String password, String phoneNum , String path) {
+    public ConModule(String id , String major , String email, String name, String password, String phoneNum , String mImageUrl) {
         this.name = name;
         this.password = password;
         this.email = email;
         this.phoneNum = phoneNum;
         this.major=major;
         this.id = id;
-        this.path = path;
+        this.mImageUrl = mImageUrl;
     }
 
     public ConModule(String name, String password, String email, String phoneNum) {
@@ -56,8 +34,6 @@ public class ConModule {
         this.phoneNum = phoneNum;
     }
 
-    public ConModule() {
-    }
 
     public String getName() {
         return name;
@@ -75,7 +51,6 @@ public class ConModule {
     public String getPhoneNum() {
         return phoneNum;
     }
-
 
 
     public void setName(String name) {
@@ -110,5 +85,13 @@ public class ConModule {
 
     public void setMajor(String major) {
         this.major = major;
+    }
+
+    public String getmImageUrl() {
+        return mImageUrl;
+    }
+
+    public void setmImageUrl(String mImageUrl) {
+        this.mImageUrl = mImageUrl;
     }
 }
