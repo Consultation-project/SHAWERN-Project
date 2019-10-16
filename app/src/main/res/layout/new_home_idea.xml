@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="100dp">
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="wrap_content"
+    >
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:focusable="auto"
+        android:padding="20dp"
+        android:src="@drawable/social"
+
+        />
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:focusable="auto"
+        android:padding="20dp"
+        android:src="@drawable/acadamic" />
+
+</LinearLayout>
+
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:focusable="auto"
+            android:padding="20dp"
+            android:src="@drawable/legal" />
+
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:focusable="auto"
+            android:padding="20dp"
+            android:src="@drawable/comercial" />
+
+    </LinearLayout>
+
+</LinearLayout>
