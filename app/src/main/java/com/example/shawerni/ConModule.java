@@ -6,47 +6,23 @@ import java.util.Map;
 
 public class ConModule {
 
-
-
-
-
-
     private String name;
     private String password;
     private String email;
     private String phoneNum;
     private String id;
     private String major;
-    private String path;
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
+    private String url;
 
 
-    public String getPickedImageUri() {
-        return pickedImageUri;
-    }
-
-    public void setPickedImageUri(String pickedImageUri) {
-        this.pickedImageUri = pickedImageUri;
-    }
-
-    private String pickedImageUri ;
-
-
-    public ConModule(String id , String major , String email, String name, String password, String phoneNum , String path) {
+    public ConModule(String id , String major , String email, String name, String password, String phoneNum , String url) {
         this.name = name;
         this.password = password;
         this.email = email;
         this.phoneNum = phoneNum;
         this.major=major;
         this.id = id;
-        this.path = path;
+        this.url = url;
     }
 
     public ConModule(String name, String password, String email, String phoneNum) {
@@ -75,7 +51,6 @@ public class ConModule {
     public String getPhoneNum() {
         return phoneNum;
     }
-
 
 
     public void setName(String name) {
@@ -111,4 +86,13 @@ public class ConModule {
     public void setMajor(String major) {
         this.major = major;
     }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
 }

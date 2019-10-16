@@ -60,7 +60,7 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
     //DatabaseRefernce R ;
     String v ;
 
-
+    String url;
     static String id;
 
     private ProgressDialog progressDialog ;
@@ -257,28 +257,24 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
 
         if ( pickedImageUri != null){
 
-            FirebaseStorage storage = FirebaseStorage.getInstance();
 
-            final StorageReference storageRef = storage.getReference("consultantCV");
-            Task<Uri> urlTask = storageRef.putFile(Uri.parse (pickedImageUri.getLastPathSegment ())).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>> () {
+            StorageReference storage = FirebaseStorage.getInstance().getReference ();
+            final StorageReference storageRef = storage.child ("consultantCV").child (pickedImageUri.getLastPathSegment ()+ NAME+ ".jpg");
+            storageRef.putFile (pickedImageUri).addOnSuccessListener (new OnSuccessListener<UploadTask.TaskSnapshot> () {
+
                 @Override
-                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                    if (!task.isSuccessful()) {
-                        throw task.getException();
-                    }
-
-                    // Continue with the task to get the download URL
-                    return storageRef.getDownloadUrl();
-                }
-            }).addOnSuccessListener(new OnSuccessListener<Uri> () {
-                @Override
-                public void onSuccess(Uri uri) {
-
-                    path = uri.toString();
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                             url= uri.toString ();
 
 
+                        }
+                    });
                 }
             });
+
 
         }//if
         else {
@@ -304,7 +300,7 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
                             String uid = f1.getCurrentUser().getUid();
                             String id = myRef.push().getKey();
                             ConModule  m =new ConModule(id,Major.getText().toString(),email.getText().toString(),Name.getText().toString()
-                                    ,password.getText().toString(),PhoneNum.getText().toString(),path);
+                                    ,password.getText().toString(),PhoneNum.getText().toString(),url);
 
                             myRef.child(uid).setValue(m);
 
@@ -350,3 +346,4 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
     }
 
 }
+
