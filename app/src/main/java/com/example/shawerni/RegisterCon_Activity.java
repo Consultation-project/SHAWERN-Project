@@ -1,5 +1,5 @@
 package com.example.shawerni;
-
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
@@ -19,7 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.content.pm.PackageManager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -59,8 +59,6 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
     static int REQUESCODE = 1;
     TextView CVLable ;
     Uri pickedImageUri ;
-
-
 
     String url;
     static String id;
@@ -162,13 +160,21 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
 
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            storageRef.getDownloadUrl ().addOnSuccessListener (new OnSuccessListener<Uri> () {
+                                @Override
+                                public void onSuccess(Uri uri) {
+
+                                    url=String.valueOf(pickedImageUri);
+
+                                    Toast.makeText(RegisterCon_Activity.this , "image uploaded successfully",Toast.LENGTH_LONG).show();
+                                }
+                            });
 
                             //progressDialog.dismiss();
-                            Toast.makeText(RegisterCon_Activity.this , "image uploaded successfully",Toast.LENGTH_LONG).show();
+
 
                         }
-
-                    }).addOnFailureListener(new OnFailureListener() {
+                        }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
 
@@ -181,8 +187,6 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
         });
 
     }
-
-
 
     boolean isEmail(EditText text) {
         CharSequence email = text.getText().toString();
