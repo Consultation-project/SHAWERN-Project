@@ -58,7 +58,7 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
     TextView CVLable ;
     Uri pickedImageUri ;
     //DatabaseRefernce R ;
-    String v ;
+
 
     String url;
     static String id;
