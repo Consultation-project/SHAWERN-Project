@@ -40,6 +40,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.Calendar;
+
 
 public class RegisterCon_Activity extends AppCompatActivity implements View.OnClickListener {
 
@@ -52,13 +54,13 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
     EditText Major;
     Button register;
     ImageView CVImage ;
-    String path;
+
     static int PReqCode = 100 ;
     static int REQUESCODE = 1;
     TextView CVLable ;
     Uri pickedImageUri ;
-    //DatabaseRefernce R ;
-    String v ;
+
+
 
     String url;
     static String id;
@@ -72,7 +74,7 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
 
 
 
-    //private FirebaseFirestore db = FirebaseFirestore.get
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -149,8 +151,30 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
             @Override
             public void onClick(View view) {
                 if (checkDataEntered()){
+                    Calendar calendar = Calendar.getInstance();
 
-                    id = f1.getUid();
+                    //progressDialog.setMessage("wait for upload the image ...");
+                    //progressDialog.show();
+
+                    StorageReference storage = FirebaseStorage.getInstance().getReference ();
+                    final StorageReference storageRef = storage.child ("consultantCV").child ("img_"+calendar.getTimeInMillis());
+                    storageRef.putFile (pickedImageUri).addOnSuccessListener (new OnSuccessListener<UploadTask.TaskSnapshot> () {
+
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                            //progressDialog.dismiss();
+                            Toast.makeText(RegisterCon_Activity.this , "image uploaded successfully",Toast.LENGTH_LONG).show();
+
+                        }
+
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                            Toast.makeText(RegisterCon_Activity.this,"the image upload process failed , try again!",Toast.LENGTH_LONG).show();
+                        }
+                    });
                 }
 
             }
@@ -158,14 +182,7 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
 
     }
 
- /* boolean isDigits = TextUtils.isDigitsOnly(edtDigits.getText().toString());
-    public boolean isDigits(String number){
-        if(!TextUtils.isEmpty(number)){
-            return TextUtils.isDigitsOnly(number);
-        }else{
-            return false;
-        }
-    }*/
+
 
     boolean isEmail(EditText text) {
         CharSequence email = text.getText().toString();
@@ -255,29 +272,8 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
 
         }
 
-        if ( pickedImageUri != null){
+        if ( pickedImageUri == null){
 
-
-            StorageReference storage = FirebaseStorage.getInstance().getReference ();
-            final StorageReference storageRef = storage.child ("consultantCV").child (pickedImageUri.getLastPathSegment ()+ NAME+ ".jpg");
-            storageRef.putFile (pickedImageUri).addOnSuccessListener (new OnSuccessListener<UploadTask.TaskSnapshot> () {
-
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                             url= uri.toString ();
-
-
-                        }
-                    });
-                }
-            });
-
-
-        }//if
-        else {
             CVLable.setError(" Please Choose Image  ");
             CVLable.findFocus();
             return false;
@@ -285,8 +281,8 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
 
 
 
-        progressDialog.setMessage("waiting please...");
-        progressDialog.show();
+        //progressDialog.setMessage("waiting please...");
+        //progressDialog.show();
 
         f1.createUserWithEmailAndPassword(EMAIL,PASS)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -294,7 +290,7 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        progressDialog.dismiss();
+                        //progressDialog.dismiss();
                         if(task.isSuccessful()){
 
                             String uid = f1.getCurrentUser().getUid();
