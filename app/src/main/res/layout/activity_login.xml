@@ -47,52 +47,74 @@
                 android:hint="@string/password"
                 android:inputType="textPassword" />
 
+
+
             <LinearLayout
-                android:layout_width="163dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="120dp"
-                android:layout_marginStart="120dp"
+                android:layout_width="229dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="30dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="-7dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/ForgetPass"
-                    android:layout_width="47dp"
-                    android:layout_height="38dp"
-                    android:layout_weight="1"
-                    android:text="@string/forget" />
-
-                <TextView
-                    android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="5dp"
-                    android:text="@string/or"
-                    android:layout_marginRight="5dp" />
+                    android:text="Login as :"/>
 
-                <TextView
-                    android:id="@+id/CreateACC"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/create" />
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="consultant" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="consultation seeker" />
+
+                </RadioGroup>
+
             </LinearLayout>
+
 
             <Button
                 android:id="@+id/b1"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="-140dp"
                 android:layout_gravity="center"
-                android:text="@string/Login"
+                android:layout_marginTop="60dp"
                 android:background="@drawable/border"
-                android:textColor="@color/white"/>
+                android:text="@string/Login"
+                android:textColor="@color/white" />
 
 
+            <LinearLayout
+                android:layout_width="161dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="-7dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/ForgetPass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/Forget_password"/>
+
+
+                <TextView
+                    android:id="@+id/CreateACC"
+                    android:layout_width="126dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="Sign up ?" />
+            </LinearLayout>
 
         </LinearLayout>
     </RelativeLayout>

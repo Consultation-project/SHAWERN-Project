@@ -43,7 +43,7 @@
     <string name="create">
         <a href=" https://www.google.com">Create account</a>
     </string>
-    <string name="Forget_password">Forget Password</string>
+    <string name="Forget_password">Forget Password ?</string>
     <string name="EnterEmail">Enter your Email</string>
     <string name="Language">Language</string>
     <string name="Arabic">Arabic</string>
@@ -70,7 +70,8 @@
     <string name="lbl_new_note_title">New Consultation</string>
     <string name="lbl_edit_note_title">Edit Consultation</string>
     <string name="hint_enter_note">Enter your Consultation!</string>
+    <string name="regriation_section" translatable="false">Registration type</string>
+    <string name="menu_ConReq" translatable="false">Consultations Requests</string>
     <string name="gallery">gallery</string>
     <string name="camera">camera</string>
-    <string name="regriation_section">Registration type</string>
 </resources>

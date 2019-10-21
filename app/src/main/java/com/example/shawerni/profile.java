@@ -199,9 +199,19 @@ public class profile extends Fragment implements View.OnClickListener {
     }
 
     boolean checkDataEntered() {
+
+
+        if (isEmpty((EditText) userName)&&(isEmpty(password))
+        &&(isEmpty(phone))&& (isEmpty(age))&& (isEmpty(email))) {
+            userName.setError("You must enter name!");
+            password.setError("password is required!");
+            phone.setError("Phone number is required!");
+            age.setError("age is required!");
+            email.setError("Enter valid email!");
+            return false;
+        }
         if (isEmpty((EditText) userName)) {
-            Toast t = Toast.makeText(getContext(), "You must enter name!", Toast.LENGTH_SHORT);
-            t.show();
+            userName.setError("You must enter name!");
             return false;
         }
 

@@ -125,9 +125,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         PHONE  = PhoneNum.getText().toString().trim();
         AGE  = age.getText().toString().trim();
 
+        if (isEmpty((EditText)Name )&&(isEmpty(password))
+                &&(isEmpty(PhoneNum))&& (isEmpty(age))&& (isEmpty(email))) {
+            Name.setError("You must enter name!");
+            password.setError("password is required!");
+            PhoneNum.setError("Phone number is required!");
+            age.setError("age is required!");
+            email.setError("Enter valid email!");
+            return false;}
+
         if (isEmpty(Name)) {
-            Toast t = Toast.makeText(this, "You must enter  name to register!", Toast.LENGTH_SHORT);
-            t.show();
+            Name.setError( "You must enter  name to register!");
             return false;
 
         }
@@ -244,6 +252,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
 
     }
+
+    // public void onClick(View view) {
+
+    //}
 
 
 }
