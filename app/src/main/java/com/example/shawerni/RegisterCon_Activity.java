@@ -60,6 +60,8 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
     TextView CVLable ;
     Uri pickedImageUri ;
 
+
+
     String url;
     static String id;
 
@@ -165,13 +167,11 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
                                 public void onSuccess(Uri uri) {
 
                                     url=String.valueOf(pickedImageUri);
-
-                                    Toast.makeText(RegisterCon_Activity.this , "image uploaded successfully",Toast.LENGTH_LONG).show();
                                 }
                             });
 
                             //progressDialog.dismiss();
-
+                            Toast.makeText(RegisterCon_Activity.this , "image uploaded successfully",Toast.LENGTH_LONG).show();
 
                         }
                         }).addOnFailureListener(new OnFailureListener() {
@@ -187,6 +187,8 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
         });
 
     }
+
+
 
     boolean isEmail(EditText text) {
         CharSequence email = text.getText().toString();
