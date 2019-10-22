@@ -174,7 +174,7 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
                             Toast.makeText(RegisterCon_Activity.this , "image uploaded successfully",Toast.LENGTH_LONG).show();
 
                         }
-                        }).addOnFailureListener(new OnFailureListener() {
+                    }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
 
@@ -348,4 +348,3 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
     }
 
 }
-
