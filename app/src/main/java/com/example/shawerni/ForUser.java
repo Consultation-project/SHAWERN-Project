@@ -27,6 +27,8 @@ public class ForUser extends AppCompatActivity {
     String mejore;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference df ;
+    String i;
+
 
 
     protected void onCreate(Bundle savedInstanceState) {

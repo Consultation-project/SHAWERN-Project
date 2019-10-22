@@ -4,6 +4,7 @@ package com.example.shawerni;
 
 public class Consultation {
     String textCons;
+    String i;
 
 
     public Consultation() {

@@ -64,6 +64,8 @@ public class MyReclyecon extends RecyclerView.Adapter<MyReclyecon.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder{
        TextView NameOfConsultatnt ;
        RelativeLayout paerntlyout ;
+        String i;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

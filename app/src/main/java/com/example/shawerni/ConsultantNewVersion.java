@@ -25,6 +25,8 @@ public class ConsultantNewVersion extends AppCompatActivity {
     ConModule n =new ConModule();
     FirebaseDatabase database;
     DatabaseReference retreff ;
+    String i;
+
 
 
     protected void onCreate(Bundle savedInstanceState) {

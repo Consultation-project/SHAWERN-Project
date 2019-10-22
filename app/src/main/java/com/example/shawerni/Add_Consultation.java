@@ -20,6 +20,8 @@ public class Add_Consultation extends AppCompatActivity implements View.OnClickL
     Button FreeCon;
     ImageView PublicImg;
     ImageView PrivateImg;
+    String i;
+
 
     @SuppressLint("ResourceAsColor")
     @Override
