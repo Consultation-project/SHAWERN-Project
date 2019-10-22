@@ -171,7 +171,7 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
                             });
 
                             //progressDialog.dismiss();
-                            Toast.makeText(RegisterCon_Activity.this , "image uploaded successfully",Toast.LENGTH_LONG).show();
+                           // Toast.makeText(RegisterCon_Activity.this , "image uploaded successfully",Toast.LENGTH_LONG).show();
 
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -320,7 +320,7 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
                             finish();
                         }
                         else {
-                            Toast.makeText(RegisterCon_Activity.this, "Couldnt register , please try again", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterCon_Activity.this, "Couldn't register , please try again", Toast.LENGTH_SHORT).show();
 
                         }
                     }
