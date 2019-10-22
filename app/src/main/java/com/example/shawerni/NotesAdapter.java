@@ -19,7 +19,7 @@ public class NotesAdapter  extends  RecyclerView.Adapter<NotesAdapter.MyViewHold
     private Context context;
     private List<Note> notesList;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView note;
         public TextView dot;
         public TextView timestamp;

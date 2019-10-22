@@ -27,7 +27,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="@drawable/bg">
+        android:background="@android:color/white">
 
         <EditText
             android:id="@+id/textView2"

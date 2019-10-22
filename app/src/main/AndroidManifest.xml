@@ -41,6 +41,8 @@
         <activity android:name=".ListdataActivity"></activity>
         <activity android:name=".selection_page"></activity>
         <activity android:name=".NewResivActivity"></activity>
+        <activity android:name=".ConsultantNewVersion"></activity>
+        <activity android:name="ForUser"></activity>
 
     </application>
 

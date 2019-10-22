@@ -76,7 +76,7 @@ public class Add_Consultation extends AppCompatActivity implements View.OnClickL
             case R.id.img_private:
             case R.id.paidConsultation:
 
-                startActivity(new Intent(Add_Consultation.this , paid_consultation.class));
+                startActivity(new Intent(Add_Consultation.this , ConsultantNewVersion.class));
 
                 break;
 

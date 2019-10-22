@@ -113,6 +113,7 @@ public class free_Consultation extends AppCompatActivity  {
                                                 for(DataSnapshot ds: dataSnapshot.getChildren()){
 
                                                     note=ds.getValue(Consultation.class);
+
                                                     arrayList.add(note.getTextCons().toString()+ "  ");
                                                     //update
 
