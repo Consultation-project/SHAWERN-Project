@@ -11,6 +11,9 @@
         android:layout_height="wrap_content"
         android:text="Name"
         android:layout_marginLeft="30dp"
+
+
+
         >
 
 

@@ -21,6 +21,7 @@ public class MyReclyecon extends RecyclerView.Adapter<MyReclyecon.ViewHolder> {
     private static final String TAG= "RecycleView";
     private ArrayList<String>  Name = new ArrayList<>();
     private Context con;
+    String x ;
     //private ArrayList<ConModule> cons =new ArrayList<>();
 
     public MyReclyecon(ArrayList<String> name, Context con) {
