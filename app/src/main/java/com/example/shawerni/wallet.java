@@ -39,9 +39,9 @@ public class wallet extends Fragment {
 
         //  Ename();
 
-        int counter = 1;
+       //  int counter = 1;
 
-        nName.add ("Consultation " + counter);
+        nName.add ("Consultation ");
 
         inRecycle();
 

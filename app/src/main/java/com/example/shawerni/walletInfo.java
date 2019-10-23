@@ -42,7 +42,7 @@ public class walletInfo extends RecyclerView.Adapter<walletInfo.ViewHolder> {
         Log.d(TAG, "OnBinViewHolder:called.");
         //final ConModule cM = cons.get(position);
         final String userName = Consultation.get(position);
-        holder.NameOfConsultatnt.setText(userName);
+        holder.consultation.setText(userName);
         holder.paerntlyout.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -62,14 +62,14 @@ public class walletInfo extends RecyclerView.Adapter<walletInfo.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView NameOfConsultatnt ;
+        TextView consultation ;
         RelativeLayout paerntlyout ;
         String i;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            NameOfConsultatnt = itemView.findViewById(R.id.consultation);
+            consultation = itemView.findViewById(R.id.consultation);
             paerntlyout = itemView.findViewById(R.id.paernt);
         }
     }

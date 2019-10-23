@@ -44,6 +44,11 @@
         <activity android:name="MyReclyecon"></activity>
         <activity android:name=".ConsultantNewVersion"></activity>
         <activity android:name=".ForUser"></activity>
+        <activity android:name="wallet"></activity>
+        <activity android:name="payment_information"></activity>
+        <activity android:name="walletInfo"></activity>
+
+
     </application>
 
 
