@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -22,60 +23,76 @@ import java.util.ArrayList;
 
 public class wallet extends Fragment  {
 
-    private static final String TAG = "RecycleView";
-    private ArrayList<String>  Consultation = new ArrayList<>();
-    private Context con;
-    //private ArrayList<ConModule> cons =new ArrayList<>();
+    private static final String TAG = "Activity";
 
-    public wallet(ArrayList<String> consultation , Context con) {
-        Consultation = consultation;
-        this.con = con;
+    private ArrayList<String> nName = new ArrayList<>();
+    private ArrayList<ConModule> con1 = new ArrayList<>();
+
+
+
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.payconsultationlist);
+
+        Log.d(TAG, "onCreate");
+
+        //  Ename();
+
+        int counter = 1 ;
+
+        nName.add ("Consultation " + counter );
 
     }
-
-    @NonNull
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.walletfrag,parent,false);
-        ViewHolder holder= new ViewHolder (view);
-        return holder;
-
-    }
+   /* private void Ename() {
 
 
-    public void onBindViewHolder(@NonNull MyReclyecon.ViewHolder holder, int position) {
 
-        Log.d(TAG, "OnBinViewHolder:called.");
-        //final ConModule cM = cons.get(position);
-        final String userName = Consultation.get(position);
-        holder.NameOfConsultatnt.setText(userName);
-        holder.paerntlyout.setOnClickListener(new View.OnClickListener(){
+        for (int i = 1  ; i < 3 ; i++){
+
+
+            counter++;
+            inRecycle ();
+
+        }
+           */
+
+        /* database= FirebaseDatabase.getInstance();
+        retreff=database.getReference("Consultant Request");
+
+        retreff.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot :dataSnapshot.getChildren()){
+                    PayConfirm Nm = snapshot.getValue(PayConfirm.class) ;
+                    String name = Nm.getName();
+
+                    nName.add(name);
+                    inRecycle ();
+                }
+            }
 
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent (con,payment_information.class);
-               //  intent.putExtra("name",userName);
-                con.startActivity(intent);
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
 
-    }
+          */
 
-    public int getItemCount() {
-        return Consultation.size();
-    }
+    //}
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView NameOfConsultatnt ;
-        RelativeLayout paerntlyout ;
-        String i;
+    private void inRecycle (){
+        RecyclerView recyclerView= findViewById(R.id.recycler_view);
+        MyReclyecon myr = new MyReclyecon (nName,this);
+        recyclerView.setAdapter(myr);
+        recyclerView.setLayoutManager(new LinearLayoutManager (this));
 
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            NameOfConsultatnt = itemView.findViewById(R.id.consultation);
-            paerntlyout = itemView.findViewById(R.id.paernt);
-        }
+
+
+
+
+
     }
 }
