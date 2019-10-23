@@ -45,6 +45,12 @@
         <activity android:name=".NewResivActivity"></activity>
         <activity android:name=".MainActivity_Con"></activity>
         <activity android:name=".LoginActivity_Con"></activity>
+        <activity android:name=".ConsultantNewVersion"></activity>
+        <activity android:name=".wallet"></activity>
+        <activity android:name=".payment_information"></activity>
+        <activity android:name=".walletInfo"></activity>
+        <activity android:name=".MyReclyecon"></activity>
+        <activity android:name=".ForUser"></activity>
 
 
     </application>
