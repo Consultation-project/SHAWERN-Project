@@ -30,7 +30,7 @@ String X;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.conce_cy);
+        setContentView(R.layout.concrecycle);
         Log.d(TAG, "onCreate");
         Ename();
 
