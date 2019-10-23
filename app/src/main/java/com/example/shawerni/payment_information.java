@@ -28,6 +28,8 @@ public class payment_information extends AppCompatActivity {
 
     View view;
 
+    DatabaseReference payment ;
+
     String UserName;
     String UserEmail;
     String COnsultantName;

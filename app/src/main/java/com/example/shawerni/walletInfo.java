@@ -2,6 +2,7 @@ package com.example.shawerni;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,22 +32,35 @@ public class walletInfo extends AppCompatActivity{
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.concrecycle);
+        setContentView(R.layout.payconsultationlist);
         Log.d(TAG, "onCreate");
         Ename();
 
 
     }
     private void Ename() {
-        database= FirebaseDatabase.getInstance();
+
+        int counter = 1 ;
+
+        for (int i = 1  ; i < 3 ; i++){
+
+            nName.add ("Consultation " + counter );
+            counter++;
+            inRecycle ();
+                   
+        }
+
+
+        /* database= FirebaseDatabase.getInstance();
         retreff=database.getReference("Consultant Request");
 
         retreff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot :dataSnapshot.getChildren()){
-                    ConModule Nm = snapshot.getValue(ConModule.class) ;
+                    PayConfirm Nm = snapshot.getValue(PayConfirm.class) ;
                     String name = Nm.getName();
+
                     nName.add(name);
                     inRecycle ();
                 }
@@ -58,7 +72,7 @@ public class walletInfo extends AppCompatActivity{
             }
         });
 
-
+          */
 
     }
 
