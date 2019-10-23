@@ -54,7 +54,7 @@ public class wallet extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent (con,payment_information.class);
-                intent.putExtra("name",userName);
+               //  intent.putExtra("name",userName);
                 con.startActivity(intent);
 
             }
