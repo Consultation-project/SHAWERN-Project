@@ -15,7 +15,7 @@ public class ConModule {
     private String url;
 
 
-    public ConModule(String id , String major , String email, String name, String password, String phoneNum , String url) {
+    public ConModule(String id , String major , String email, String name, String password, String phoneNum , String url ) {
         this.name = name;
         this.password = password;
         this.email = email;
