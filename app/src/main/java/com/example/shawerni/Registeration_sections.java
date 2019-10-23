@@ -22,10 +22,7 @@ public class Registeration_sections extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-        setTitle(R.string.regriation_section);
+setTitle("");
 
         toolbar.setTitleTextColor(Color.WHITE);
 
@@ -33,7 +30,7 @@ public class Registeration_sections extends AppCompatActivity {
         Consultant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Registeration_sections.this, RegisterCon_Activity.class);
+                Intent i = new Intent(Registeration_sections.this, LoginActivity_Con.class);
                 startActivity(i);
             }
         });
@@ -42,22 +39,13 @@ public class Registeration_sections extends AppCompatActivity {
         User.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Registeration_sections.this, RegisterActivity.class);
+                Intent i = new Intent(Registeration_sections.this, LoginActivity.class);
                 startActivity(i);
             }
         });
 
     }
 
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // handle arrow click here
-        if (item.getItemId() == android.R.id.home) {
 
-            onBackPressed();
-
-            // close this activity and return to preview activity (if there is any)
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
 }

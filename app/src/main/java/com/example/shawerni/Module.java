@@ -4,16 +4,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Module {
-    private String name,password,email,phoneNum,age,id ;
+    private String name,password,email,phoneNum,age,id ,msg;
 
 
-    public Module(String id ,String age , String email, String name, String password, String phoneNum) {
+    public Module(String id ,String age , String email, String name, String password, String phoneNum, String msg) {
         this.name = name;
         this.password = password;
         this.email = email;
         this.phoneNum = phoneNum;
         this.age=age;
         this.id = id;
+        this.msg = msg;
+
 
     }
 
@@ -25,6 +27,14 @@ public class Module {
     }
 
     public Module() {
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     public String getName() {

@@ -34,7 +34,6 @@ public class free_Consultation extends AppCompatActivity  {
 
 
     FloatingActionButton add;
-    int x ;
     //EditText cons;
     ListView listView;
     Consultation note;
@@ -97,7 +96,10 @@ public class free_Consultation extends AppCompatActivity  {
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog,int id) {
 
+
                                         String input=userInput.getText().toString();
+                                        if(LoginActivity.ID != null)
+                                            FirebaseDatabase.getInstance().getReference("User").child(LoginActivity.ID).child("msg").setValue(input.trim());
                                         arrayList.add(input);
                                         note.setTextCons(input.trim());
                                         databaseReference.push().setValue(note);
@@ -171,73 +173,6 @@ public class free_Consultation extends AppCompatActivity  {
 
     }
 
-    /**
-     * Inserting new note in db
-     * and refreshing the list
-     */
-    private void createNote(String note) {
-        // inserting note in db and getting
-        // newly inserted note id
-        //long id = db.insertNote(note);
-
-        // get the newly inserted note from d
-        // Note n = db.getNote(id);
-
-       /* if (n != null) {
-            // adding new note to array list at 0 position
-            notesList.add(0, n);
-
-            // refreshing the list
-            mAdapter.notifyDataSetChanged();
-
-            toggleEmptyNotes();
-        }
-    }
-
-    /**
-     * Updating note in db and updating
-     * item in the list by its position
-     */
 
 
-        // updating note in db
-       /* db.updateNote(n);
-
-        // refreshing the list
-        notesList.set(position, n);
-        mAdapter.notifyItemChanged(position);
-
-        toggleEmptyNotes();
-    }
-
-    /**
-     * Deleting note from SQLite and removing the
-     * item from the list by its position
-     */
-   /* private void deleteNote(int position) {
-        // deleting the note from db
-       db.deleteNote(notesList.get(position));
-
-        // removing the note from the list
-        notesList.remove(position);
-        mAdapter.notifyItemRemoved(position);
-
-        toggleEmptyNotes();
-    }*/
-
-        /**
-         * Opens dialog with Edit - Delete options
-         * Edit - 0
-         * Delete - 0
-         */
-        // private void showActionsDialog(final int position) {
-    }
-
-    /**
-     * Shows alert dialog with EditText options to enter / edit
-     * a note.
-     * when shouldUpdate=true, it automatically displays old note and changes the
-     * button text to UPDATE
-     */
-    //private void showNoteDialog(final boolean shouldUpdate, final Note note, final int position) {
 }

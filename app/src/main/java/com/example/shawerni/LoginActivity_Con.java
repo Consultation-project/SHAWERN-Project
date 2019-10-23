@@ -23,12 +23,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+public class LoginActivity_Con extends AppCompatActivity implements View.OnClickListener {
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-static String ID ;
     final Context context = this ;
     Button Login ;
    static EditText Email ;
@@ -49,8 +46,7 @@ static String ID ;
 
         if(firebaseAuth.getCurrentUser() != null){
 
-            ID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            Intent intent =new Intent(getApplicationContext() , MainActivity.class );
+            Intent intent =new Intent(getApplicationContext() , MainActivity_Con.class );
             startActivity(intent);
             finish();
         }
@@ -69,7 +65,7 @@ static String ID ;
         createACC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
+                Intent intent = new Intent(LoginActivity_Con.this,RegisterCon_Activity.class);
                 startActivity(intent);
 
             }
@@ -105,7 +101,7 @@ static String ID ;
                                                         @Override
                                                         public void onComplete(@NonNull Task<Void> task) {
                                                             if(task.isSuccessful()){
-                                                                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                                                                startActivity(new Intent(getApplicationContext(), LoginActivity_Con.class));
                                                             }
                                                             else {
                                                                 userInput.setError("Error With This Password  ");
@@ -120,7 +116,7 @@ static String ID ;
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if(task.isSuccessful()){
-                                                        startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                                                        startActivity(new Intent(getApplicationContext(), LoginActivity_Con.class));
                                                     }
                                                     else {
                                                         userInput.setError("Error With This Password  ");
@@ -180,14 +176,13 @@ static String ID ;
 
 
                                         EMAILP = Email.getText().toString();
-                                        ID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                                        MySharedPreference.putString(LoginActivity.this , Constance.key.USER_EMAIL,EMAILP);
-                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                        MySharedPreference.putString(LoginActivity_Con.this , Constance.key.USER_EMAIL,EMAILP);
+                                        Intent intent = new Intent(getApplicationContext(), MainActivity_Con.class);
                                         startActivity(intent);
                                         finish();
                                     } else {
 
-                                        Toast.makeText(LoginActivity.this, " Email or password wrong", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(LoginActivity_Con.this, " Email or password wrong", Toast.LENGTH_LONG).show();
 
                                     }
                                 } });

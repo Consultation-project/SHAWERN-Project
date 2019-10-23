@@ -156,38 +156,25 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
                     //progressDialog.setMessage("wait for upload the image ...");
                     //progressDialog.show();
 
-
-                    /*
-                     StorageReference storageReference = storage.getReference();
-                                            storageReference.child("profileImageUrl").child(fileName).putFile(resultUri)
-                                                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                                        @Override
-                                                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                                                            String url = taskSnapshot.getDownloadUrl().toString();
-                                                            mCustomerDatabase.child("profileImageUrl").setValue(url)
-                     */
                     StorageReference storage = FirebaseStorage.getInstance().getReference ();
                     final StorageReference storageRef = storage.child ("consultantCV").child ("img_"+calendar.getTimeInMillis());
                     storageRef.putFile (pickedImageUri).addOnSuccessListener (new OnSuccessListener<UploadTask.TaskSnapshot> () {
 
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
                             storageRef.getDownloadUrl ().addOnSuccessListener (new OnSuccessListener<Uri> () {
-                               @Override
-                             public void onSuccess(Uri uri) {
+                                @Override
+                                public void onSuccess(Uri uri) {
 
-
-                            url = String.valueOf(pickedImageUri);
-                               }
-                           });
+                                    url=String.valueOf(pickedImageUri);
+                                }
+                            });
 
                             //progressDialog.dismiss();
-                           // Toast.makeText(RegisterCon_Activity.this , "image uploaded successfully",Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterCon_Activity.this , "image uploaded successfully",Toast.LENGTH_LONG).show();
 
                         }
-                    }).addOnFailureListener(new OnFailureListener() {
+                        }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
 
@@ -317,27 +304,23 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
                             ConModule  m =new ConModule(id,Major.getText().toString(),email.getText().toString(),Name.getText().toString()
                                     ,password.getText().toString(),PhoneNum.getText().toString(),url);
 
-                            f1.signOut();
                             myRef.child(uid).setValue(m);
 
 
 
-                            // Toast.makeText(RegisterCon_Activity.this, "Register Successfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterCon_Activity.this, "Register Successfully", Toast.LENGTH_SHORT).show();
+
 
                             new AlertDialog.Builder(RegisterCon_Activity.this).setTitle("waiting please...")
                                     .setMessage("Register Successfully, Waiting please until get acceptance from admin !")
                                     .setPositiveButton("yes",null);
-
-
-                            Intent intent = new Intent(RegisterCon_Activity.this,LoginActivity.class);
+                            Intent intent = new Intent(RegisterCon_Activity.this,MainActivity_Con.class);
                             startActivity(intent);
-
-
 
                             finish();
                         }
                         else {
-                            Toast.makeText(RegisterCon_Activity.this, "Couldn't register , please try again", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterCon_Activity.this, "Couldnt register , please try again", Toast.LENGTH_SHORT).show();
 
                         }
                     }
@@ -365,3 +348,4 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
     }
 
 }
+

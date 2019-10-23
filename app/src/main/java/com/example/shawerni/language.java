@@ -80,4 +80,8 @@ public class language extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);}
 
+    //String input=userInput.getText().toString();
+//if(LoginActivity.ID != null)
+          //  FirebaseDatabase.getInstance().getReference("User").child(LoginActivity.ID).child("msg").push().child("m").setValue(input.trim());
+
 }
