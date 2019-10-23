@@ -34,6 +34,7 @@ public class free_Consultation extends AppCompatActivity  {
 
 
     FloatingActionButton add;
+    int x ;
     //EditText cons;
     ListView listView;
     Consultation note;
