@@ -15,10 +15,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class payment_information extends AppCompatActivity {
 
-    TextView e1;
-    TextView e2;
-    String name1 ;
-    String mejore;
+
 
     TextView User;
     TextView Email;
@@ -30,7 +27,6 @@ public class payment_information extends AppCompatActivity {
 
     View view;
 
-    DatabaseReference payment ;
 
     String UserName;
     String UserEmail;
@@ -56,39 +52,43 @@ public class payment_information extends AppCompatActivity {
         paymentImage.findViewById (R.id.cv_image);
 
 
-
-
-
-        e1 = findViewById(R.id.Des);
-        e2 = findViewById(R.id.meger);
         PayConfirm payConfirm= new PayConfirm ();
         FirebaseDatabase database;
         DatabaseReference retreff ;
 
 
-        name1 = getIntent().getStringExtra("name");
+        // name1 = getIntent().getStringExtra("name");
 
-        e1.setText(name1);
+       //  e1.setText(name1);
         database= FirebaseDatabase.getInstance();
-        retreff=database.getReference("Consultant Request");
+        retreff=database.getReference("Pay Confirm ");
 
         retreff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    ConModule Nm = snapshot.getValue(ConModule.class);
-                    String name = Nm.getName();
 
-                    if(name1.equals(name)){
-                        e2.setText(Nm.getMajor());
+                    PayConfirm Nm = snapshot.getValue(PayConfirm.class);
+
+                    UserName = Nm.getName ();
+                    UserEmail = Nm.getEmail ();
+                    COnsultantName = Nm.getConsultentName ();
+                    DATE = Nm.getDate ();
+                    TIME = Nm.getTime ();
+                    Type = Nm.getType ();
+
+                    User.setText(UserName);
+                    Email.setText(UserEmail );
+                    ConsultantName.setText(COnsultantName);
+                    Date.setText(DATE);
+                    Time.setText(TIME);
+                    ReservationType.setText(Type);
 
                     }
 
 
                 }
 
-
-            }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
