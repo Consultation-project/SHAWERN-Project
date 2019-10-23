@@ -21,6 +21,7 @@ public class Add_Consultation extends AppCompatActivity implements View.OnClickL
     ImageView PublicImg;
     ImageView PrivateImg;
 
+
     @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
