@@ -1,47 +1,43 @@
 package com.example.shawerni;
 
-import android.os.Bundle;
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class walletInfo extends AppCompatActivity{
+public class walletInfo extends RecyclerView.Adapter<walletInfo.ViewHolder> {
 
     private static final String TAG = "RecycleView";
     private ArrayList<String>  Consultation = new ArrayList<>();
 
     private Context con;
-//private ArrayList<ConModule> cons =new ArrayList<>();
+    //private ArrayList<ConModule> cons =new ArrayList<>();
 
-    public wallet(ArrayList<String> consultation , Context con) {
+    public walletInfo(ArrayList<String> consultation , Context con) {
         Consultation = consultation;
         this.con = con;
 
     }
 
     @NonNull
+    @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.walletfrag,parent,false);
-        ViewHolder holder= new ViewHolder (view);
+        walletInfo.ViewHolder holder= new walletInfo.ViewHolder (view);
         return holder;
-
     }
 
-
-    public void onBindViewHolder(@NonNull MyReclyecon.ViewHolder holder, int position) {
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         Log.d(TAG, "OnBinViewHolder:called.");
         //final ConModule cM = cons.get(position);
@@ -60,6 +56,7 @@ public class walletInfo extends AppCompatActivity{
 
     }
 
+    @Override
     public int getItemCount() {
         return Consultation.size();
     }
@@ -76,6 +73,5 @@ public class walletInfo extends AppCompatActivity{
             paerntlyout = itemView.findViewById(R.id.paernt);
         }
     }
-
 
 }
