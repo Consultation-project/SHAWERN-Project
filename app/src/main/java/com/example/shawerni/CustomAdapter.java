@@ -22,26 +22,34 @@ import java.util.List;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
-    private ArrayList<Recieved_request> requestList;
+    private List<Recieved_request> requestList;
     private Context context;
 
+    public CustomAdapter(List<Recieved_request> request , Context context) {
+
+        this.requestList = request;
+        this.context = context;
+    }
+
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
+
+        public LinearLayout linearLayout;
         public TextView sender, msg;
+
 
         public MyViewHolder(View view) {
             super(view);
             sender = (TextView) view.findViewById(R.id.sender);
             msg = (TextView) view.findViewById(R.id.text);
+            linearLayout = view.findViewById(R.id.single_reciveReq);
+
 
         }
+
+
     }
 
-
-    public CustomAdapter(ArrayList<Recieved_request> request , Context context) {
-
-        this.requestList = request;
-        this.context = context;
-    }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -51,11 +59,20 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         return new MyViewHolder(itemView);
     }
 
+
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Recieved_request request = requestList.get(position);
         holder.sender.setText(request.getSender());
         holder.msg.setText(request.getMsg());
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+            }
+        });
+
 
     }
 

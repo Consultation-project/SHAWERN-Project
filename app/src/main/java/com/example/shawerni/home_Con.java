@@ -42,7 +42,7 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class home_Con extends Fragment {
 
-    private ArrayList<Recieved_request> requestList = new ArrayList<>();
+    private List<Recieved_request> requestList = new ArrayList<>();
     private RecyclerView recyclerView;
     private CustomAdapter mAdapter;
     private Context context;
@@ -58,6 +58,7 @@ public class home_Con extends Fragment {
     private String idS;
     private ArrayList<String> MSG = new ArrayList<>();
     private final DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("User");
+    private CustomAdapter customAdapter;
 
     public home_Con() {
     }
@@ -72,7 +73,30 @@ Log.d(TAG,"onCreate");
         prepareMovieData();
 
 
-         //myRef.child().push().child("Consultation").setValue("what is the best antihistamin drug for...");
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(getActivity(), recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+
+                        requestList.get(position);
+                        Intent intent = new Intent(getActivity(), answer.class);
+                        intent.putExtra("SENDER", requestList.get(position).getSender());
+                        intent.putExtra("MSG", requestList.get(position).getMsg());
+                        startActivity(intent);
+
+                    }
+
+                    @Override
+                    public void onLongItemClick(View view, int position) {
+
+                    }
+
+
+                }));
+
+        customAdapter = new CustomAdapter( requestList , context);
+        recyclerView.setAdapter(customAdapter);
 
         return view;
     }
@@ -86,21 +110,18 @@ Log.d(TAG,"onCreate");
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
 
-                    Module m = ds.getValue(Module.class);
-                    senderS = m.getName();
-                    idS = m.getId();
-                    m1 = m.getMsg();
-
-
-                    if (m1 != null) {
+                    if(ds.getValue(Module.class).getMsg()!= null) {
+                        Module m = ds.getValue(Module.class);
+                        senderS = m.getName();
+                        idS = m.getId();
+                        m1 = m.getMsg();
                         requestList.add(new Recieved_request(senderS, m1, idS));
                         inRecycle();
                     }
 
-                    if (m1 == null){
-                        requestList.add(new Recieved_request(senderS, "no", idS));
-                    inRecycle();
-                }
+
+
+
                                                           }
                                                       }
 
@@ -120,6 +141,7 @@ Log.d(TAG,"onCreate");
 
 
     private void inRecycle() {
+
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         CustomAdapter myr = new CustomAdapter(requestList, getContext());
         recyclerView.setAdapter(myr);

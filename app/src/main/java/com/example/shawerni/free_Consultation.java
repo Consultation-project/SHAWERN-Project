@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -62,6 +64,12 @@ public class free_Consultation extends AppCompatActivity  {
         add=(FloatingActionButton)findViewById(R.id.add);
         listView=(ListView)findViewById(R.id.lv);
         //cons=(EditText) findViewById(R.id.cons);
+
+        Toolbar toolbar = findViewById(R.id.toolbar2);
+        setSupportActionBar(toolbar);
+
+        toolbar.setTitle("public Consultation");
+        toolbar.setTitleTextColor(Color.WHITE);
 
 
         //progressDialog2 = new ProgressDialog(this);

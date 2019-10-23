@@ -9,12 +9,20 @@
     >
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="MissingConstraints">
 
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="?attr/colorPrimary"
+            tools:ignore="DuplicateIds">
+
+        </androidx.appcompat.widget.Toolbar>
 
         <ListView
             android:layout_width="match_parent"
@@ -43,15 +51,7 @@
         android:hint="enter your consultation"
         android:imeOptions="normal"> -->
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar2"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="?attr/colorPrimary"
-        app:layout_anchor="@+id/appBarLayout"
-        app:layout_anchorGravity="center">
 
-    </androidx.appcompat.widget.Toolbar>
 
     <ListView
         android:id="@+id/lv"
