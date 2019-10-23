@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 
 
-public class wallet extends Fragment {
+public class wallet extends Fragment  {
 
     private static final String TAG = "RecycleView";
     private ArrayList<String>  Consultation = new ArrayList<>();
