@@ -16,7 +16,7 @@
         android:background="@color/white">
 
         <TextView
-            android:id="@+id/Name2"
+            android:id="@+id/consultation"
             android:layout_width="299dp"
             android:layout_height="35dp"
             android:layout_marginLeft="30dp"
