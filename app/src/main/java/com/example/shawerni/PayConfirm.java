@@ -26,6 +26,8 @@ public class PayConfirm {
     }
 
 
+    public PayConfirm(){}
+
     public String getId() {
         return id;
     }

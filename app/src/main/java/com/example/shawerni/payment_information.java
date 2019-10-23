@@ -1,6 +1,7 @@
 package com.example.shawerni;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,6 +26,7 @@ public class payment_information extends AppCompatActivity {
     TextView Date ;
     TextView Time ;
     TextView ReservationType;
+    ImageView paymentImage ;
 
     View view;
 
@@ -51,13 +53,15 @@ public class payment_information extends AppCompatActivity {
         Date = findViewById (R.id.dateConsultation);
         Time = findViewById (R.id.timeConsultation);
         ReservationType = findViewById (R.id.reservationType);
+        paymentImage.findViewById (R.id.cv_image);
+
 
 
 
 
         e1 = findViewById(R.id.Des);
         e2 = findViewById(R.id.meger);
-        ConModule conModule= new ConModule ();
+        PayConfirm payConfirm= new PayConfirm ();
         FirebaseDatabase database;
         DatabaseReference retreff ;
 
