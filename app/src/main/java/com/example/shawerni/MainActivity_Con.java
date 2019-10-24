@@ -29,7 +29,7 @@ public class MainActivity_Con extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_con);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -60,7 +60,7 @@ public class MainActivity_Con extends AppCompatActivity
 
         if (savedInstanceState == null) {
             setTitle(R.string.menu_home);
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, new home()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, new home_Con()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
     }
@@ -107,13 +107,13 @@ public class MainActivity_Con extends AppCompatActivity
 
         if (id == R.id.nav_home) {
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.container,new home()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container,new home_Con()).commit();
             setTitle(R.string.menu_home);
 
 
         } else if (id == R.id.nav_Profile) {
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.container,new profile()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container,new profile_Con()).commit();
             setTitle(R.string.menu_profile);
 
         } else if (id == R.id.nav_CosReq) {
@@ -155,7 +155,7 @@ public class MainActivity_Con extends AppCompatActivity
 
         firebaseAuth.signOut();
         finish();
-        startActivity(new Intent(this , LoginActivity.class));
+        startActivity(new Intent(this , Registeration_sections.class));
 
 
 

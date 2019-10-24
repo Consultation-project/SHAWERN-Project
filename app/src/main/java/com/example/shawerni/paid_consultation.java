@@ -42,11 +42,6 @@ public class paid_consultation extends AppCompatActivity {
 
 
 
-
-
-
-
-
         setTitle(R.string.paidCon);
         toolbar.setTitleTextColor(Color.WHITE);
 

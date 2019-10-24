@@ -26,9 +26,9 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                startActivity(new Intent(getApplicationContext(),Registeration_sections.class));
             }
-        },5000);
+        },2000);
 
 
     }//end onCreate
@@ -36,7 +36,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
-        Intent intent =new Intent(SplashActivity.this , LoginActivity.class );
+        Intent intent =new Intent(SplashActivity.this , Registeration_sections.class );
         startActivity(intent);
         finish();
     }//close onClick

@@ -18,7 +18,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ConsultantNewVersion extends AppCompatActivity {
-   private static final String TAG = "Activity";
+    private static final String TAG = "Activity";
 
     private ArrayList<String> nName = new ArrayList<>();
     private ArrayList<ConModule> con1 = new ArrayList<>();
@@ -26,7 +26,7 @@ public class ConsultantNewVersion extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference retreff ;
     String i;
-String X;
+    String X;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,26 +37,26 @@ String X;
 
 
     }
- private void Ename() {
-     database= FirebaseDatabase.getInstance();
-     retreff=database.getReference("Consultant Request");
+    private void Ename() {
+        database= FirebaseDatabase.getInstance();
+        retreff=database.getReference("Consultant Request");
 
-     retreff.addValueEventListener(new ValueEventListener() {
-         @Override
-         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-             for(DataSnapshot snapshot :dataSnapshot.getChildren()){
-                 ConModule Nm = snapshot.getValue(ConModule.class) ;
-                 String name = Nm.getName();
-                 nName.add(name);
-                 inRecycle ();
-             }
-         }
+        retreff.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot :dataSnapshot.getChildren()){
+                    ConModule Nm = snapshot.getValue(ConModule.class) ;
+                    String name = Nm.getName();
+                    nName.add(name);
+                    inRecycle ();
+                }
+            }
 
-         @Override
-         public void onCancelled(@NonNull DatabaseError databaseError) {
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-         }
-     });
+            }
+        });
 
 
 

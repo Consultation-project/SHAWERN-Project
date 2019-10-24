@@ -72,6 +72,22 @@
     <string name="hint_enter_note">Enter your Consultation!</string>
     <string name="regriation_section" translatable="false">Registration type</string>
     <string name="menu_ConReq" translatable="false">Consultations Requests</string>
-    <string name="gallery">gallery</string>
-    <string name="camera">camera</string>
+    <string name="gallery" translatable="false">gallery</string>
+    <string name="camera" translatable="false">camera</string>
+
+    <string name="consultantName" translatable="false">Consultant Name</string>
+    <string name="dateConsultation" translatable="false">Date</string>
+    <string name="timeConsultation" translatable="false">Time</string>
+    <string name="reservationWay" translatable="false">Reservation Way</string>
+    <string name="paymentInformation" translatable="false">payment Information:</string>
+    <string name="transfer" translatable="false">Transfer money to :</string>
+    <string name="SA" translatable="false">SA43 8000 0365 6080 1042 4223 </string>
+    <string name="accountName" translatable="false">Account Name : shawerni </string>
+    <string name="bank" translatable="false">Bank : Al Rajhi Bank</string>
+    <string name="paymentImage" translatable="false"> Attach the conversion image </string>
+    <string name="payNow" translatable="false"> pay Now </string>
+    <string name="BookingInfo" translatable="false"> Booking Information </string>
+
+
+
 </resources>

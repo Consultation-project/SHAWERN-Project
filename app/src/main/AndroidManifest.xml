@@ -26,12 +26,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 <activity android:name=".RegisterActivity"></activity>
 
      <activity android:name=".LoginActivity"></activity>
         <activity android:name=".language"></activity>
-<activity android:name=".newRegister"></activity>
+
         <activity android:name=".Add_Consultation"></activity>
         <activity android:name=".free_Consultation"></activity>
         <activity android:name=".paid_consultation"></activity>
@@ -41,9 +42,16 @@
         <activity android:name=".ListdataActivity"></activity>
         <activity android:name=".selection_page"></activity>
         <activity android:name=".NewResivActivity"></activity>
-        <activity android:name=".ConsultantNewVersion"></activity>
-        <activity android:name="ForUser"></activity>
+        <activity android:name=".MainActivity_Con"></activity>
+        <activity android:name=".LoginActivity_Con"></activity>
+        <activity android:name=".answer">
 
+
+        </activity>
+
+<activity android:name=".ForUser"></activity>
+        <activity android:name=".ConsultantNewVersion"></activity>
+        <activity android:name="MyReclyecon"></activity>
     </application>
 
 

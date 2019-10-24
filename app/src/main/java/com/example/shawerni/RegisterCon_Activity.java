@@ -171,7 +171,7 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
                             });
 
                             //progressDialog.dismiss();
-                            Toast.makeText(RegisterCon_Activity.this , "image uploaded successfully",Toast.LENGTH_LONG).show();
+                         //   Toast.makeText(RegisterCon_Activity.this , "image uploaded successfully",Toast.LENGTH_LONG).show();
 
                         }
                         }).addOnFailureListener(new OnFailureListener() {
@@ -209,9 +209,21 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
         PHONE  = PhoneNum.getText().toString().trim();
         MAJOR  = Major.getText().toString().trim();
 
+        if (isEmpty(Name)&&isEmpty(password)&&isEmpty(email)&&isEmpty(confirmPassword)&&isEmpty(PhoneNum)&&(isEmpty(Major)&& pickedImageUri == null)){
+
+            Name.setError("You must enter  name to register!");
+            password.setError("password is required!");
+            password.setError("Please Your Password Need to Contain 6 Charecters or More ");
+            email.setError("email is required!");
+            confirmPassword.setError("confirmPassword is required!");
+            PhoneNum.setError("PhoneNum is required!");
+            Major.setError("major is required!");
+            CVLable.setError(" Please Choose Image  ");
+            return false;
+        }
         if (isEmpty(Name)) {
-            Toast t = Toast.makeText(this, "You must enter  name to register!", Toast.LENGTH_SHORT);
-            t.show();
+           Name.setError("You must enter  name to register!");
+
             return false;
 
         }
@@ -314,7 +326,7 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
                             new AlertDialog.Builder(RegisterCon_Activity.this).setTitle("waiting please...")
                                     .setMessage("Register Successfully, Waiting please until get acceptance from admin !")
                                     .setPositiveButton("yes",null);
-                            Intent intent = new Intent(RegisterCon_Activity.this,LoginActivity.class);
+                            Intent intent = new Intent(RegisterCon_Activity.this,MainActivity_Con.class);
                             startActivity(intent);
 
                             finish();

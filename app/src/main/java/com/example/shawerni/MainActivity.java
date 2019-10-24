@@ -31,8 +31,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
-   // TextView emailMenu ;
+    static String ID;
+    // TextView emailMenu ;
     //TextView UserMenue ;
     private FirebaseAuth firebaseAuth;
     @SuppressLint("ResourceAsColor")
@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity
 
 
         firebaseAuth = FirebaseAuth.getInstance();
+
+
         /*if(firebaseAuth.getCurrentUser()== null){
             finish();
             startActivity(new Intent(this , LoginActivity.class));
@@ -170,7 +172,7 @@ public class MainActivity extends AppCompatActivity
 
         firebaseAuth.signOut();
         finish();
-        startActivity(new Intent(this , LoginActivity.class));
+        startActivity(new Intent(this , Registeration_sections.class));
 
 
 

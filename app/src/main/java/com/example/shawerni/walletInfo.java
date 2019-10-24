@@ -14,16 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MyReclyecon extends RecyclerView.Adapter<MyReclyecon.ViewHolder> {
+public class walletInfo extends RecyclerView.Adapter<walletInfo.ViewHolder> {
 
-    private static final String TAG= "RecycleView";
-    private ArrayList<String>  Name = new ArrayList<>();
+    private static final String TAG = "RecycleView";
+    private ArrayList<String>  Consultation = new ArrayList<>();
+
     private Context con;
-    String x ;
     //private ArrayList<ConModule> cons =new ArrayList<>();
 
-    public MyReclyecon(ArrayList<String> name, Context con) {
-        Name = name;
+    public walletInfo(ArrayList<String> consultation , Context con) {
+        Consultation = consultation;
         this.con = con;
 
     }
@@ -31,44 +31,45 @@ public class MyReclyecon extends RecyclerView.Adapter<MyReclyecon.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.conce_cy,parent,false);
-        ViewHolder holder= new ViewHolder(view);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.walletfrag,parent,false);
+        walletInfo.ViewHolder holder= new walletInfo.ViewHolder (view);
         return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         Log.d(TAG, "OnBinViewHolder:called.");
         //final ConModule cM = cons.get(position);
-        final String userName = Name.get(position);
-        holder.NameOfConsultatnt.setText(userName);
+        final String userName = Consultation.get(position);
+        holder.consultation.setText(userName);
         holder.paerntlyout.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (con,ForUser.class);
-                intent.putExtra("name",userName);
+                Intent intent = new Intent (con,payment_information.class);
+                //  intent.putExtra("name",userName);
                 con.startActivity(intent);
 
             }
-            });
+        });
 
     }
 
     @Override
     public int getItemCount() {
-        return Name.size();
+        return Consultation.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-       TextView NameOfConsultatnt ;
-       RelativeLayout paerntlyout ;
+        TextView consultation ;
+        RelativeLayout paerntlyout ;
         String i;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            NameOfConsultatnt = itemView.findViewById(R.id.Name2);
+            consultation = itemView.findViewById(R.id.consultation);
             paerntlyout = itemView.findViewById(R.id.paernt);
         }
     }

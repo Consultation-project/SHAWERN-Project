@@ -226,7 +226,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             String uid = f1.getCurrentUser().getUid();
                             String id = myRef.push().getKey();
                             Module m =new Module(id,age.getText().toString(),email.getText().toString(),Name.getText().toString()
-                                    ,password.getText().toString(),PhoneNum.getText().toString());
+                                    ,password.getText().toString(),PhoneNum.getText().toString(),"AAA");
 
                             myRef.child(uid).setValue(m);
 
