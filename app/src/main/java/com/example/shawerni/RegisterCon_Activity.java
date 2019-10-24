@@ -209,9 +209,21 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
         PHONE  = PhoneNum.getText().toString().trim();
         MAJOR  = Major.getText().toString().trim();
 
+        if (isEmpty(Name)&&isEmpty(password)&&isEmpty(email)&&isEmpty(confirmPassword)&&isEmpty(PhoneNum)&&(isEmpty(Major)&& pickedImageUri == null)){
+
+            Name.setError("You must enter  name to register!");
+            password.setError("password is required!");
+            password.setError("Please Your Password Need to Contain 6 Charecters or More ");
+            email.setError("email is required!");
+            confirmPassword.setError("confirmPassword is required!");
+            PhoneNum.setError("PhoneNum is required!");
+            Major.setError("major is required!");
+            CVLable.setError(" Please Choose Image  ");
+            return false;
+        }
         if (isEmpty(Name)) {
-            Toast t = Toast.makeText(this, "You must enter  name to register!", Toast.LENGTH_SHORT);
-            t.show();
+           Name.setError("You must enter  name to register!");
+
             return false;
 
         }

@@ -81,6 +81,37 @@ public class free_Consultation extends AppCompatActivity  {
 
         //update
 
+        database=FirebaseDatabase.getInstance();
+        retreff=database.getReference("Consultaion");
+        list2=new ArrayList<>();
+        // arrayAdapter2=new ArrayAdapter<String>(free_Consultation.this,R.layout.note_dialog,R.id.notedailoag,list2);
+        retreff.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds: dataSnapshot.getChildren()){
+
+                    note=ds.getValue(Consultation.class);
+                    arrayList.add(note.getTextCons().toString()+ "  ");
+                    //update
+
+
+
+
+
+                    //update
+
+
+                }
+
+                listView.setAdapter(arrayAdapter);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
 

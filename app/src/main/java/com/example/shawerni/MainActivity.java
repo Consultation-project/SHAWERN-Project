@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity
 
         firebaseAuth.signOut();
         finish();
-        startActivity(new Intent(this , LoginActivity.class));
+        startActivity(new Intent(this , Registeration_sections.class));
 
 
 
