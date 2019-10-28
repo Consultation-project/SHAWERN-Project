@@ -1,6 +1,5 @@
 package com.example.shawerni;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -28,7 +27,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
             public void run() {
                 startActivity(new Intent(getApplicationContext(),Registeration_sections.class));
             }
-        },2000);
+        },4000);
 
 
     }//end onCreate
