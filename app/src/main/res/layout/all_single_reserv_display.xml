@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/whitebg" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="0dp"
+       >
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:orientation="vertical"
+                android:weightSum="6"
+                >
+
+                <TextView
+                    android:id="@+id/lconname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:textColor="#334355"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/lDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date"
+                    android:textColor="#334355"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/lTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Time"
+                    android:textColor="#334355"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/lStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status"
+                    android:textColor="#334355"
+
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/lsCommunication"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Type of communication"
+                    android:textColor="#334355"
+
+                    android:textStyle="normal" />
+                <ImageView
+                    android:id="@+id/activeIcon"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="08dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_add_white_24dp"
+                    android:visibility="invisible" />
+
+            </LinearLayout>
+        </FrameLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:paddingStart="5dp"
+            android:paddingLeft="5dp">
+
+            <TextView
+                android:id="@+id/conname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="WWWW"
+                android:textStyle="normal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/appodate"
+                android:text=""
+                android:textStyle="normal"
+                />
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/appotime"
+                android:text=""
+                android:textStyle="normal"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/appostatus"
+                android:text=""
+                android:textStyle="normal"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/appocommunication"
+                android:text="gggg"
+                android:textStyle="normal"
+                />
+            <View
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="0.10dp"
+                android:background="@color/white" />
+            <Button
+                android:id="@+id/paid"
+                android:layout_width="42dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:background="@drawable/border"
+                android:text="Pay"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
+

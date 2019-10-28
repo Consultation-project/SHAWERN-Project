@@ -15,7 +15,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity
+            android:name=".MainActivity2"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -44,6 +47,8 @@
         <activity android:name=".NewResivActivity"></activity>
         <activity android:name=".MainActivity_Con"></activity>
         <activity android:name=".LoginActivity_Con"></activity>
+        <activity android:name=".payment_information"></activity>
+
         <activity android:name=".answer">
 
 

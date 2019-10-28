@@ -11,19 +11,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="@drawable/untitleddesign"
+        android:orientation="vertical"
 
 
-        >
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="200dp"
-            android:orientation="horizontal"
-            android:layout_gravity="center">
+            android:orientation="horizontal">
 
 
             <ImageView
@@ -39,20 +40,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/username"
-                />
+                android:hint="@string/username" />
 
         </LinearLayout>
-
-
 
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            android:layout_gravity="center">
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -69,22 +67,18 @@
                 android:layout_marginLeft="4dp"
                 android:ems="10"
                 android:hint="@string/email"
-                android:inputType="textEmailAddress"
-                />
-
+                android:inputType="textEmailAddress" />
 
 
         </LinearLayout>
 
 
-
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            android:layout_gravity="center">
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="37dp"
@@ -99,10 +93,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/password"
-                android:inputType="textPassword"
-                />
-
-
+                android:inputType="textPassword" />
 
 
         </LinearLayout>
@@ -110,9 +101,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            android:layout_gravity="center">
+            android:orientation="horizontal">
 
 
             <ImageView
@@ -126,12 +117,10 @@
                 android:id="@+id/ePhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:digits="0123456789"
                 android:ems="10"
                 android:hint="@string/phonenumber"
-                android:digits="0123456789"
-                android:inputType="phone"
-                />
-
+                android:inputType="phone" />
 
 
         </LinearLayout>
@@ -167,52 +156,24 @@
         </LinearLayout>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <Button
             android:id="@+id/save"
             android:layout_width="115dp"
             android:layout_height="44dp"
-            android:background="@drawable/border"
-            android:layout_marginTop="20dp"
             android:layout_gravity="center"
-            android:textColor="@android:color/white"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/border"
             android:text="@string/Save"
-            tools:layout_editor_absoluteX="154dp"
-            tools:layout_editor_absoluteY="550dp"
+            android:textColor="@android:color/white"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.507"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.939"/>
-
-
-
-
-
-
-
-
-
-
-
+            app:layout_constraintVertical_bias="0.939"
+            tools:layout_editor_absoluteX="154dp"
+            tools:layout_editor_absoluteY="550dp" />
 
 
     </LinearLayout>

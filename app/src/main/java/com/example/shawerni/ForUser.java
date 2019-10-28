@@ -1,6 +1,8 @@
 package com.example.shawerni;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.FocusFinder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,7 +29,11 @@ public class ForUser extends AppCompatActivity {
     TextView e2;
     View view;
     String name1 ;
+    String uId ;
+    private UserInfo userInfo;
+
     String mejore;
+    Button reserbtn;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference df ;
     String i;
@@ -40,10 +48,25 @@ public class ForUser extends AppCompatActivity {
         ConModule conModule= new ConModule();
         FirebaseDatabase database;
         DatabaseReference retreff ;
-        Button b = findViewById(R.id.but);
-
-
         name1 = getIntent().getStringExtra("name");
+        uId=getIntent().getStringExtra("userId");
+        userInfo        = new UserInfo(this);
+
+        reserbtn=findViewById(R.id.reservebtn);
+        reserbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ForUser.this, selection_page.class);
+                startActivity(i);
+                Intent intent = new Intent (ForUser.this,consultant_appo.class);
+
+                intent.putExtra("userId",uId);
+
+              //  getSupportFragmentManager().beginTransaction().replace(R.id.container,new selection_page()).commit();
+              //  setTitle("Consultant_appo");
+
+            }
+        });
 
 
         database= FirebaseDatabase.getInstance();
@@ -58,6 +81,7 @@ public class ForUser extends AppCompatActivity {
 
                     if (name1.equals(name)) {
                         e1.setText("Consultant Name : " + name1);
+                        userInfo.setKeyConName(name1);
                         e2.setText("Mejore : " + Nm.getMajor());
 
                     }
@@ -71,16 +95,6 @@ public class ForUser extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
-
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-            }
-
-
         });
 
 

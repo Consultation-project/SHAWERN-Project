@@ -1,5 +1,6 @@
 package com.example.shawerni;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -18,12 +19,16 @@ public class MyReclyecon extends RecyclerView.Adapter<MyReclyecon.ViewHolder> {
 
     private static final String TAG= "RecycleView";
     private ArrayList<String>  Name = new ArrayList<>();
+    private ArrayList<String>  uID = new ArrayList<>();
+    private UserInfo userInfo;
+
     private Context con;
     String x ;
     //private ArrayList<ConModule> cons =new ArrayList<>();
 
-    public MyReclyecon(ArrayList<String> name, Context con) {
+    public MyReclyecon(ArrayList<String> name,ArrayList<String> uid, Context con) {
         Name = name;
+        uID = uid;
         this.con = con;
 
     }
@@ -41,6 +46,8 @@ public class MyReclyecon extends RecyclerView.Adapter<MyReclyecon.ViewHolder> {
         Log.d(TAG, "OnBinViewHolder:called.");
         //final ConModule cM = cons.get(position);
         final String userName = Name.get(position);
+        final String userId = uID.get(position);
+        userInfo        = new UserInfo(con);
         holder.NameOfConsultatnt.setText(userName);
         holder.paerntlyout.setOnClickListener(new View.OnClickListener(){
 
@@ -48,6 +55,8 @@ public class MyReclyecon extends RecyclerView.Adapter<MyReclyecon.ViewHolder> {
             public void onClick(View v) {
                 Intent intent = new Intent (con,ForUser.class);
                 intent.putExtra("name",userName);
+                intent.putExtra("userId",userId);
+                userInfo.setKeyConid(userId);
                 con.startActivity(intent);
 
             }

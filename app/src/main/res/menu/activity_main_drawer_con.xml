@@ -13,6 +13,11 @@
             android:icon="@drawable/ic_account_circle_blue_24dp"
             android:title="@string/menu_profile" />
         <item
+            android:id="@+id/nav_addappo"
+            android:icon="@drawable/ic_payment_black_24dp"
+            android:title="My Appointment" />
+
+        <item
             android:id="@+id/nav_CosReq"
             android:icon="@drawable/ic_payment_black_24dp"
             android:title="@string/menu_ConReq" />

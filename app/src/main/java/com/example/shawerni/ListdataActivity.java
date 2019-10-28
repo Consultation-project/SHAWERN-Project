@@ -40,7 +40,7 @@ public class ListdataActivity extends AppCompatActivity {
         //  String receivedName =  intent.getStringExtra("name");
         //  int receivedImage = intent.getIntExtra("image",0);
         mSubmitButton  = findViewById(R.id.reserved);
-        listdata.setText(userInfo.getKeyName());
+        listdata.setText(userInfo.getKeyConName());
         txtCer.setText(userInfo.getKeyCer());
         imageView.setImageResource(userInfo.getKeyImagename());
         //enable back Button

@@ -18,18 +18,18 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity_Con extends AppCompatActivity
+public class MainActivity2 extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
-   // TextView emailMenu ;
+    static String ID;
+    // TextView emailMenu ;
     //TextView UserMenue ;
     private FirebaseAuth firebaseAuth;
     @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_con);
+        setContentView(R.layout.activity_main2);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -45,6 +45,8 @@ public class MainActivity_Con extends AppCompatActivity
 
 
         firebaseAuth = FirebaseAuth.getInstance();
+
+
         /*if(firebaseAuth.getCurrentUser()== null){
             finish();
             startActivity(new Intent(this , LoginActivity.class));
@@ -60,7 +62,7 @@ public class MainActivity_Con extends AppCompatActivity
 
         if (savedInstanceState == null) {
             setTitle(R.string.menu_home);
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, new home_Con()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, new consultant_appo()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
     }
@@ -107,32 +109,26 @@ public class MainActivity_Con extends AppCompatActivity
 
         if (id == R.id.nav_home) {
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.container,new home_Con()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container,new home()).commit();
             setTitle(R.string.menu_home);
 
 
         } else if (id == R.id.nav_Profile) {
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.container,new profile_Con()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container,new profile()).commit();
             setTitle(R.string.menu_profile);
 
-        }
-
-
-        else if (id == R.id.nav_addappo) {
-
-            getSupportFragmentManager().beginTransaction().replace(R.id.container,new NewAppointActivity()).commit();
-            setTitle("Add Appointment");
-
-        }
-
-
-        else if (id == R.id.nav_CosReq) {
+        } else if (id == R.id.nav_Wallet) {
 
             getSupportFragmentManager().beginTransaction().replace(R.id.container,new wallet()).commit();
-            setTitle(R.string.menu_ConReq);
+            setTitle(R.string.menu_Wallet);
 
-        }  else if (id == R.id.nav_Settings) {
+        } else if (id == R.id.nav_History) {
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.container,new history()).commit();
+            setTitle(R.string.menu_History);
+
+        } else if (id == R.id.nav_Settings) {
 
             getSupportFragmentManager().beginTransaction().replace(R.id.container,new settings()).commit();
             setTitle(R.string.menu_Settings);
@@ -145,7 +141,7 @@ public class MainActivity_Con extends AppCompatActivity
         }else if (id == R.id.nav_Logout) {
             setTitle("Logout");
 
-            new AlertDialog.Builder(MainActivity_Con.this).setTitle("Logout..").setMessage("Are you sure to exit")
+            new AlertDialog.Builder(MainActivity2.this).setTitle("Logout..").setMessage("Are you sure to exit")
                     .setPositiveButton("yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             logout();

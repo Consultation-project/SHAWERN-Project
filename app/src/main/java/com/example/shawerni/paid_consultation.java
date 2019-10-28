@@ -91,7 +91,7 @@ public class paid_consultation extends AppCompatActivity {
                                 "- Legal Consultant at Durrat Al Ard Contracting (Landy).\n" };
 
                 //  intent.putExtra("image",personImages[i]);
-                userInfo.setName(personNames[i]);
+                userInfo.setKeyConid(personNames[i]);
                 userInfo.setKeyImagename(personImages[i]);
                 userInfo.setCer(personCer[i]);
                 startActivity(intent);

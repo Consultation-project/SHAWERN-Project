@@ -43,10 +43,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class wallet extends Fragment {
+public class Reserv_appo extends Fragment {
     private FirebaseAuth f1;
     private UserInfo userInfo;
-    Button paidbtn;
+    private Button mSubmitButton;
 
     private DatabaseReference appointDatabaseReference;
     View view;
@@ -66,35 +66,32 @@ public class wallet extends Fragment {
         //recyclerView.addItemDecoration(new home.GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-
-        paidbtn=view.findViewById(R.id.paid);
-       /* paidbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               // Intent i = new Intent(wallet.this, paid_consultation.class);
-               // startActivity(i);
-
-                //Intent i = new Intent(getActivity(), paid_consultation.class);
-               // startActivity(i);
-                }
-        });*/
-
         f1 = FirebaseAuth.getInstance();
 
         final String userId = f1.getUid();
-        userInfo = new UserInfo(getContext());
+        userInfo        = new UserInfo(getContext());
 
+        mSubmitButton = (Button) view.findViewById(R.id.paid);
 
         appointDatabaseReference = FirebaseDatabase.getInstance().getReference().child( "User").child(userInfo.getKeyConId()).child("Reservation");
         appointDatabaseReference.keepSynced(true);
 
 
 
-        final Query searchQuery = appointDatabaseReference;
+         final Query searchQuery = appointDatabaseReference;
         //Log.v("",searchQuery.toString());
 
+        mSubmitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        //  Toast.makeText( getContext(),searchQuery.toString(), Toast.LENGTH_SHORT ).show();
+
+                                  startActivity(new Intent( getContext() , payment_information.class));
+                                //  finish()
+
+            }
+        });
+      //  Toast.makeText( getContext(),searchQuery.toString(), Toast.LENGTH_SHORT ).show();
         Log.v( "kui" ,"uiktuiki");
         FirebaseRecyclerOptions<Reserve> recyclerOptions = new FirebaseRecyclerOptions.Builder<Reserve>()
                 .setQuery(searchQuery, Reserve.class)
@@ -107,25 +104,11 @@ public class wallet extends Fragment {
                 holder.evtime.setText(model.evtime);
                 holder.evdate.setText(model.evDate);
                 holder.name.setText(model.conName);
-                holder.appointconnection.setText(model.appointconnection);
-
-                holder.paid.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        final DatabaseReference postRef = getRef(position);
-                        final String postKey = postRef.getKey();
+                holder.method.setText(model.appointconnection);
+                //Type of communication
 
 
-                        String visit_user_id = getRef(position).getKey();
-                        Intent intent = new Intent( getActivity(), payment_information.class);
-
-
-                         startActivity(intent);
-
-
-                    }
-                });
-
+                /**on list >> clicking item, then, go to single user profile*/
 
                 /**on list >> clicking item, then, go to single user profile*/
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -134,23 +117,25 @@ public class wallet extends Fragment {
                         final DatabaseReference postRef = getRef(position);
                         final String postKey = postRef.getKey();
 
-                        // appointDatabaseReference.child( Day +"-"+(Month+1)+"-"+Year).child(postKey);
-                        //  Log.v("",appointDatabaseReference.child( Day +"-"+(Month+1)+"-"+Year).child(postKey).toString());
-                        //  appointDatabaseReference.child( Day +"-"+(Integer.parseInt(Month)+1)+"-"+Year).child(postKey);
+                       // appointDatabaseReference.child( Day +"-"+(Month+1)+"-"+Year).child(postKey);
+                      //  Log.v("",appointDatabaseReference.child( Day +"-"+(Month+1)+"-"+Year).child(postKey).toString());
+                     //  appointDatabaseReference.child( Day +"-"+(Integer.parseInt(Month)+1)+"-"+Year).child(postKey);
 
 
 
                         //  appointDatabaseReference.child( Day +"-"+(Month+1)+"-"+Year).child(postKey).child("status").setValue("Y");
                         //   updateAppo(appointDatabaseReference.child( Day +"-"+(Integer.parseInt(Month)+1)+"-"+Year).child(postKey));
                         String visit_user_id = getRef(position).getKey();
-                        Intent intent = new Intent( getActivity(), MainActivity.class);
+                       // Intent intent = new Intent( getActivity(), MainActivity.class);
 
-                        intent.putExtra("visitUserId", visit_user_id);
-                        startActivity(intent);
+                      //  intent.putExtra("visitUserId", visit_user_id);
+                     //   startActivity(intent);
 
 
                     }
                 });
+
+
             }
 
             @NonNull
@@ -161,12 +146,21 @@ public class wallet extends Fragment {
             }
         };
         recyclerView.setAdapter(adapter);
-        //  searchPeopleProfile("");
+      //  searchPeopleProfile("");
 
         adapter.startListening();
         adapter.notifyDataSetChanged();
-        // Toast.makeText( getContext(), Integer.toString(year )+ "/" + month +"/"+ day, Toast.LENGTH_SHORT ).show();
+       // Toast.makeText( getContext(), Integer.toString(year )+ "/" + month +"/"+ day, Toast.LENGTH_SHORT ).show();
 
+
+
+
+
+
+
+
+
+      
         return view;
     }
 
@@ -218,9 +212,8 @@ public class wallet extends Fragment {
     private void searchPeopleProfile(final String searchString) {
     }
 
-
     public static class SearchPeopleVH extends RecyclerView.ViewHolder{
-        TextView name, evdate,evtime,status,appointconnection;
+        TextView name, evdate,evtime,status,method;
         Button paid;
         public SearchPeopleVH(View itemView) {
             super(itemView);
@@ -228,8 +221,7 @@ public class wallet extends Fragment {
             evdate = itemView.findViewById(R.id.appodate);
             evtime = itemView.findViewById(R.id.appotime);
             status = itemView.findViewById(R.id.appostatus);
-            appointconnection = itemView.findViewById(R.id.appocommunication);
-            //method = itemView.findViewById(R.id.appocommunication);
+            method = itemView.findViewById(R.id.appocommunication);
             paid = itemView.findViewById(R.id.paid);
 
             //Type of communication

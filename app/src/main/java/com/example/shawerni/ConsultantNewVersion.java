@@ -19,9 +19,10 @@ import java.util.ArrayList;
 
 public class ConsultantNewVersion extends AppCompatActivity {
     private static final String TAG = "Activity";
+    private ArrayList<String> nId = new ArrayList<>();
 
     private ArrayList<String> nName = new ArrayList<>();
-    private ArrayList<ConModule> con1 = new ArrayList<>();
+    private ArrayList<ConModule> con = new ArrayList<>();
     ConModule n =new ConModule();
     FirebaseDatabase database;
     DatabaseReference retreff ;
@@ -46,8 +47,11 @@ public class ConsultantNewVersion extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot :dataSnapshot.getChildren()){
                     ConModule Nm = snapshot.getValue(ConModule.class) ;
+
+                    String userId=snapshot.getKey().toString();
                     String name = Nm.getName();
                     nName.add(name);
+                    nId.add(userId);
                     inRecycle ();
                 }
             }
@@ -64,7 +68,7 @@ public class ConsultantNewVersion extends AppCompatActivity {
 
     private void inRecycle (){
         RecyclerView recyclerView= findViewById(R.id.recycler_view);
-        MyReclyecon myr = new MyReclyecon(nName,this);
+        MyReclyecon myr = new MyReclyecon(nName,nId,this);
         recyclerView.setAdapter(myr);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

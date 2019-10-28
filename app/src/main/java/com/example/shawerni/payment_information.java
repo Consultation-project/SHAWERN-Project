@@ -49,7 +49,7 @@ public class payment_information extends AppCompatActivity {
         Date = findViewById (R.id.dateConsultation);
         Time = findViewById (R.id.timeConsultation);
         ReservationType = findViewById (R.id.reservationType);
-        paymentImage.findViewById (R.id.cv_image);
+        paymentImage=findViewById (R.id.cv_image);
 
 
         PayConfirm payConfirm= new PayConfirm ();
