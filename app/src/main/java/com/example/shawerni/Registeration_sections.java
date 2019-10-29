@@ -1,9 +1,7 @@
 package com.example.shawerni;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -24,7 +22,7 @@ public class Registeration_sections extends AppCompatActivity {
 
 setTitle("");
 
-        toolbar.setTitleTextColor(Color.WHITE);
+
 
         Consultant = findViewById(R.id.consultant);
         Consultant.setOnClickListener(new View.OnClickListener() {

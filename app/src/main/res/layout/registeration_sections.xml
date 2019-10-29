@@ -13,13 +13,7 @@
         tools:ignore="MissingConstraints">
 
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar2"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:background="?attr/colorPrimary">
 
-        </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
@@ -27,34 +21,45 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="@drawable/bg">
+        android:background="@drawable/fff">
+
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="match_parent"
+            android:layout_width="275dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
             android:gravity="center"
             android:text="Login as :"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/note_list_text"
             android:textSize="24sp" />
 
         <Button
             android:id="@+id/consultant"
-            android:text="Consultant"
-            android:layout_width="match_parent"
+            android:layout_width="221dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
             android:background="@drawable/border"
             android:gravity="center"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="50dp"/>
+            android:text="Consultant" />
 
         <Button
             android:id="@+id/consultation_seeker"
-            android:layout_width="match_parent"
+            android:layout_width="221dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:background="@drawable/border"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
             android:text="Consultation seeker" />
+
+        <Button
+            android:id="@+id/admin"
+            android:layout_width="221dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="Admin" />
 
 
     </LinearLayout>
