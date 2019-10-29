@@ -1,10 +1,17 @@
 package com.example.shawerni;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
@@ -24,7 +31,8 @@ public class payment_information extends AppCompatActivity {
     TextView Time ;
     TextView ReservationType;
     ImageView paymentImage ;
-
+    TextView paymentImagelable ;
+    Button payNow;
     View view;
 
 
@@ -34,6 +42,13 @@ public class payment_information extends AppCompatActivity {
     String DATE ;
     String TIME ;
     String Type ;
+
+    static int PReqCode = 100 ;
+    static int REQUESCODE = 1;
+    TextView payLable ;
+    Uri pickedImageUri ;
+    String url;
+
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference df ;
@@ -49,7 +64,107 @@ public class payment_information extends AppCompatActivity {
         Date = findViewById (R.id.dateConsultation);
         Time = findViewById (R.id.timeConsultation);
         ReservationType = findViewById (R.id.reservationType);
-        paymentImage=findViewById (R.id.cv_image);
+        payNow = findViewById(R.id.button3);
+        paymentImage = findViewById (R.id.cv_image);
+        paymentImage.setOnClickListener (new View.OnClickListener () {
+            @Override
+            public void onClick(View view) {
+
+                AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(payment_information.this);
+                myAlertDialog.setTitle("choose image ");
+                myAlertDialog.setMessage("choose image from Gallery or Camera");
+
+                myAlertDialog.setPositiveButton(getResources().getString(R.string.gallery),
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface arg0, int arg1) {
+
+                                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+                                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                startActivityForResult(pickPhoto , 1);
+
+                            }
+                        });
+
+                myAlertDialog.setNegativeButton (getResources().getString(R.string.camera),
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface arg0, int arg1) {
+
+                                Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                startActivityForResult(takePicture, 100);//zero can be replaced with any action code
+
+                            }
+                        });
+                myAlertDialog.setNeutralButton ("cancel", null);
+
+                myAlertDialog.show();
+
+
+            }
+        });
+
+        payNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(payment_information.this , "your payment was successfully",Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(payment_information.this,MainActivity.class);
+                startActivity(intent);
+
+                finish();
+
+            /* if ( pickedImageUri != null){
+
+                    Calendar calendar = Calendar.getInstance();
+
+                    //progressDialog.setMessage("wait for upload the image ...");
+                    //progressDialog.show();
+
+                    StorageReference storage = FirebaseStorage.getInstance().getReference ();
+                    final StorageReference storageRef = storage.child ("paymentImage").child ("img_"+calendar.getTimeInMillis());
+                    storageRef.putFile (pickedImageUri).addOnSuccessListener (new OnSuccessListener<UploadTask.TaskSnapshot> () {
+
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            storageRef.getDownloadUrl ().addOnSuccessListener (new OnSuccessListener<Uri> () {
+                                @Override
+                                public void onSuccess(Uri uri) {
+
+                                    url=String.valueOf(pickedImageUri);
+                                }
+                            });
+
+                            //progressDialog.dismiss();
+                            Toast.makeText(payment_information.this , "your payment was successfully",Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(payment_information.this,MainActivity.class);
+                            startActivity(intent);
+
+                            finish();
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener () {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                            Toast.makeText(payment_information.this,"the image upload process failed , try again!",Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+
+                else {
+                    paymentImagelable.setError (" Please Choose Image  ");
+                    paymentImagelable.findFocus ();
+                }
+*/
+            }
+        });
+
+
+
+
+
+
+
+
 
 
         PayConfirm payConfirm= new PayConfirm ();
@@ -97,4 +212,15 @@ public class payment_information extends AppCompatActivity {
         });}
 
 
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1 ||  requestCode ==  100 && resultCode == RESULT_OK && data != null  && data.getData ()!= null){
+
+            pickedImageUri=data.getData();
+            paymentImage.setImageURI(pickedImageUri);
+        }
+
+    }
 }
