@@ -1,39 +1,28 @@
 package com.example.shawerni;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -58,19 +47,19 @@ public class profile extends Fragment implements View.OnClickListener {
     FirebaseDatabase b;
     FirebaseUser firebaseUser ;
     Module obj;
-    //private DatabaseReference mFirebaseDatabase;
-    //private FirebaseDatabase mFirebaseInstance;
+    private DatabaseReference mFirebaseDatabase;
+    private FirebaseDatabase mFirebaseInstance;
     final List<Module> mod = new ArrayList<Module>();
     private FirebaseAuth f1 = FirebaseAuth.getInstance();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String userid = user.getUid();
-    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Consultant Request");
+    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User");
     final profile context = this;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.profilefrag, container, false);
+        view = inflater.inflate(R.layout.profilefrag_con, container, false);
         //ref= FirebaseDatabase.getInstance().getReference("User").child("User");
 
 
@@ -87,14 +76,14 @@ public class profile extends Fragment implements View.OnClickListener {
         //emaildrawer=view.findViewById(R.id.emaildrawer);
 
         save = (Button) view.findViewById(R.id.save);
-        //mFirebaseInstance = FirebaseDatabase.getInstance();
+        mFirebaseInstance = FirebaseDatabase.getInstance();
 
 
         // get reference to 'users' node
-        //mFirebaseDatabase = mFirebaseInstance.getReference("users");
+        mFirebaseDatabase = mFirebaseInstance.getReference("User");
 
 
-        ref = FirebaseDatabase.getInstance().getReference("Consultant Request");
+        ref = FirebaseDatabase.getInstance().getReference("User");
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
@@ -112,7 +101,7 @@ public class profile extends Fragment implements View.OnClickListener {
                 // emaildrawer.setText(dataSnapshot.child("email").getValue().toString());
                 password.setText(dataSnapshot.child("password").getValue().toString());
                 phone.setText(dataSnapshot.child("phoneNum").getValue().toString());
-                age.setText(dataSnapshot.child("major").getValue().toString());
+                age.setText(dataSnapshot.child("age").getValue().toString());
 
 
 
@@ -202,7 +191,7 @@ public class profile extends Fragment implements View.OnClickListener {
 
 
         if (isEmpty((EditText) userName)&&(isEmpty(password))
-        &&(isEmpty(phone))&& (isEmpty(age))&& (isEmpty(email))) {
+                &&(isEmpty(phone))&& (isEmpty(age))&& (isEmpty(email))) {
             userName.setError("You must enter name!");
             password.setError("password is required!");
             phone.setError("Phone number is required!");
@@ -287,10 +276,6 @@ public class profile extends Fragment implements View.OnClickListener {
 
 
     }
-
-
-
-
 
 
 }
