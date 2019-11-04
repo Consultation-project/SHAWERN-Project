@@ -25,6 +25,7 @@ public class MyReclyecon extends RecyclerView.Adapter<MyReclyecon.ViewHolder> im
     private ArrayList<String> uID = new ArrayList<>();
     private ArrayList<String> contactListFiltered;
     private UserInfo userInfo;
+    int x;
     private Context con;
     private ContactsAdapterListener listener;
 
