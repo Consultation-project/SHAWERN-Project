@@ -87,7 +87,7 @@
     <string name="paymentImage" translatable="false"> Attach the conversion image </string>
     <string name="payNow" translatable="false"> pay Now </string>
     <string name="BookingInfo" translatable="false"> Booking Information </string>
-
+    <string name="major">major</string>
 
 
 </resources>

@@ -36,7 +36,7 @@ public class profile_Con extends Fragment implements View.OnClickListener {
     EditText email;
     EditText password;
     EditText phone;
-    EditText age ;
+    EditText major ;
     Button save;
     TextView userdrawer ;
     TextView emaildrawer ;
@@ -56,7 +56,7 @@ public class profile_Con extends Fragment implements View.OnClickListener {
     private FirebaseAuth f1 = FirebaseAuth.getInstance();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String userid = user.getUid();
-    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User");
+    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Consultant Request");
     final profile_Con context = this;
 
     @Nullable
@@ -73,7 +73,7 @@ public class profile_Con extends Fragment implements View.OnClickListener {
         email = (EditText) view.findViewById(R.id.eEmail);
         password = (EditText) view.findViewById(R.id.ePassword);
         phone = (EditText) view.findViewById(R.id.ePhone);
-        age = (EditText) view.findViewById(R.id.eeage);
+        major = (EditText) view.findViewById(R.id.major);
 
         //userdrawer = view.findViewById(R.id.userdrawer);
         //emaildrawer=view.findViewById(R.id.emaildrawer);
@@ -83,10 +83,10 @@ public class profile_Con extends Fragment implements View.OnClickListener {
 
 
         // get reference to 'users' node
-        mFirebaseDatabase = mFirebaseInstance.getReference("users");
+        mFirebaseDatabase = mFirebaseInstance.getReference("Consultant Request");
 
 
-        ref = FirebaseDatabase.getInstance().getReference("User");
+        ref = FirebaseDatabase.getInstance().getReference("Consultant Request");
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
@@ -104,7 +104,7 @@ public class profile_Con extends Fragment implements View.OnClickListener {
                 // emaildrawer.setText(dataSnapshot.child("email").getValue().toString());
                 password.setText(dataSnapshot.child("password").getValue().toString());
                 phone.setText(dataSnapshot.child("phoneNum").getValue().toString());
-                age.setText(dataSnapshot.child("age").getValue().toString());
+                major.setText(dataSnapshot.child("major").getValue().toString());
 
 
 
@@ -194,11 +194,11 @@ public class profile_Con extends Fragment implements View.OnClickListener {
 
 
         if (isEmpty((EditText) userName)&&(isEmpty(password))
-        &&(isEmpty(phone))&& (isEmpty(age))&& (isEmpty(email))) {
+                &&(isEmpty(phone))&& (isEmpty(major))&& (isEmpty(email))) {
             userName.setError("You must enter name!");
             password.setError("password is required!");
             phone.setError("Phone number is required!");
-            age.setError("age is required!");
+            major.setError("age is required!");
             email.setError("Enter valid email!");
             return false;
         }
@@ -233,20 +233,20 @@ public class profile_Con extends Fragment implements View.OnClickListener {
             return false;
         }
 
-        if (isEmpty(age)) {
-            age.setError("age is required!");
+        if (isEmpty(major)) {
+            major.setError("age is required!");
             return false;
 
         }
-        if(age.length()<2 || age.length()>2 ){
-            age.setError("Please Enter Your Age Correctly ");
-            return false;
-        }
+        //if(age.length()<2 || age.length()>2 ){
+        //    age.setError("Please Enter Your Age Correctly ");
+          //  return false;
+       // }
 
-        if(age.getText().toString().substring(0,1).equals("0")||age.getText().toString().substring(0,1).equals("1")){
-            age.setError("The application  accepts just +20 year ");
-            return false;
-        }
+       // if(age.getText().toString().substring(0,1).equals("0")||age.getText().toString().substring(0,1).equals("1")){
+        //    age.setError("The application  accepts just +20 year ");
+         //   return false;
+        //}
         /*if ((Boolean) isEmpty(gender)) {
             gender.setError("gender is required!"); }*/
         return true;
@@ -255,14 +255,14 @@ public class profile_Con extends Fragment implements View.OnClickListener {
     void uploud (){
         progressDialog.setMessage("Updating...");
         progressDialog.show();
-        ref2 = FirebaseDatabase.getInstance().getReference("User").child(f1.getUid());
+        ref2 = FirebaseDatabase.getInstance().getReference("Consultant Request").child(f1.getUid());
         //Update profile
         HashMap<String , Object> map = new HashMap <>();
         map.put("name", userName.getText().toString());
         map.put("email",email.getText().toString());
         map.put("password",password.getText().toString());
         map.put("phoneNum",phone.getText().toString());
-        map.put("age", age.getText().toString());
+        map.put("major", major.getText().toString());
         ref2.updateChildren(map);
         //userdrawer.setText(userName.getText().toString());
         // emaildrawer.setText(email.getText().toString());

@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="Name"
         android:textSize="16dp"
-        android:textColor="@color/white"
+        android:textColor="@color/colorPrimary"
         android:layout_gravity="center">
 
 

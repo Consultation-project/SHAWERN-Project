@@ -59,7 +59,7 @@ public class profile extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.profilefrag_con, container, false);
+        view = inflater.inflate(R.layout.profilefrag, container, false);
         //ref= FirebaseDatabase.getInstance().getReference("User").child("User");
 
 
