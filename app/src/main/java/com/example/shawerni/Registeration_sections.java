@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class Registeration_sections extends AppCompatActivity {
-    Button  Consultant , User ;
+    Button Consultant, User, admin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +38,14 @@ setTitle("");
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Registeration_sections.this, LoginActivity.class);
+                startActivity(i);
+            }
+        });
+        admin = findViewById(R.id.admin);
+        admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Registeration_sections.this, looginadmin.class);
                 startActivity(i);
             }
         });

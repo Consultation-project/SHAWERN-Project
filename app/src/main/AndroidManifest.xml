@@ -13,7 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".addfree"></activity>
+        <activity android:name=".reqlist"></activity>
+        <activity android:name=".myrec3" />
+        <activity android:name=".accept" />
+        <activity android:name=".reqest2" />
+        <activity android:name=".foruser2" />
+        <activity android:name=".request" />
+        <activity android:name=".looginadmin" />
+        <activity android:name=".addfree" />
         <activity
             android:name=".MainActivity2"
             android:label="@string/app_name"
@@ -44,7 +51,7 @@
         <activity android:name=".MainActivity_Con" />
         <activity android:name=".LoginActivity_Con" />
         <activity android:name=".payment_information" />
-        <activity android:name=".answer"></activity>
+        <activity android:name=".answer" />
         <activity android:name=".ForUser" />
         <activity android:name=".ConsultantNewVersion" />
         <activity android:name=".MyReclyecon" />

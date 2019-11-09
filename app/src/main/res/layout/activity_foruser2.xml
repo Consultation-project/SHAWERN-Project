@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".foruser2">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/untitleddesign"
+
+        android:gravity="center"
+        android:orientation="vertical"
+
+        tools:ignore="MissingConstraints"
+
+
+        >
+
+        <TextView
+            android:id="@+id/n3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name" />
+
+        <TextView
+            android:id="@+id/m3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Mejore" />
+
+        <TextView
+            android:id="@+id/e3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Email"
+            tools:ignore="DuplicateIds" />
+
+        <TextView
+            android:id="@+id/e4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="phone"
+            tools:ignore="DuplicateIds" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="152dp"
+            android:layout_marginTop="200dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/r3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/border"
+                android:text="reject"
+                android:textSize="14sp"
+
+                tools:ignore="DuplicateIds,InvalidId">
+
+            </Button>
+
+            <Button
+                android:id="@+id/a3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/border"
+                android:text="accept"
+                android:textSize="14sp"
+
+                tools:ignore="InvalidId">
+
+            </Button>
+        </LinearLayout>
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

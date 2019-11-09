@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/paernt2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+
+    >
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+
+        >
+
+        <LinearLayout
+            android:id="@+id/lin4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="7dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/n55"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+
+                android:text="Name"
+                android:textColor="#0F0C0C"
+                android:textSize="24dp"
+
+
+                >
+
+
+            </TextView>
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imgVwArrow"
+            android:layout_width="187dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="5dp"
+            android:tint="@color/colorPrimary"
+            app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp" />
+
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
