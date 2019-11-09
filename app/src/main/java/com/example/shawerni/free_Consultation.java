@@ -1,29 +1,16 @@
 package com.example.shawerni;
 
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,79 +19,76 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class free_Consultation extends AppCompatActivity  {
-
-
-    FloatingActionButton add;
-    //EditText cons;
-    ListView listView;
-    Consultation note;
-    ArrayList<String> arrayList = new ArrayList<String>();
-    ArrayAdapter<String> arrayAdapter;
-    DatabaseReference databaseReference;
-    //var2
-    DatabaseReference retreff ;
-
+public class free_Consultation extends AppCompatActivity {
+    //private static final String TAG = "Activity";
+    public static String name;
+    //private ArrayList<ConModule> con1 = new ArrayList<>();
+    ConModule n = new ConModule();
     FirebaseDatabase database;
-    ArrayAdapter<String> arrayAdapter2;
-    ArrayList<String> list2;
-    //private ProgressDialog progressDialog2;
-    final Context context = this;
-    EditText userInput;
-    //new varb
+    String st;
+    private RecyclerView recyclerView;
+    FloatingActionButton add;
 
-
-    // private DatabaseHelper db;
+    // ArrayList<String> listitems ;
+    //ArrayAdapter<String> arrayAdapter;
+    private RecyclerView.Adapter adapter;
+    private ArrayList<String> listitems;
+    DatabaseReference retreff ;
+    private ArrayList<ConModule> listitems2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        add = findViewById(R.id.add2);
         setContentView(R.layout.free_consultation);
-
-        add=(FloatingActionButton)findViewById(R.id.add);
-        listView=(ListView)findViewById(R.id.lv);
-        //cons=(EditText) findViewById(R.id.cons);
-
-        Toolbar toolbar = findViewById(R.id.toolbar2);
+        Toolbar toolbar = findViewById(R.id.toolbarfree);
         setSupportActionBar(toolbar);
 
-        toolbar.setTitle("public Consultation");
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Free Consultation");
+
         toolbar.setTitleTextColor(Color.WHITE);
 
 
-        //progressDialog2 = new ProgressDialog(this);
+        // Log.d(TAG, "onCreate");
 
 
-        arrayAdapter=new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_expandable_list_item_1,arrayList);
-        note=new Consultation();
-        databaseReference= FirebaseDatabase.getInstance().getReference().child("Consultaion");
+        //recyclerView=(RecyclerView)findViewById(R.id.v34);
 
-        //update
+        //recyclerView.setHasFixedSize(true);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        listitems = new ArrayList<String>();
+
 
         database=FirebaseDatabase.getInstance();
-        retreff=database.getReference("Consultaion");
-        list2=new ArrayList<>();
-        // arrayAdapter2=new ArrayAdapter<String>(free_Consultation.this,R.layout.note_dialog,R.id.notedailoag,list2);
+        retreff = database.getReference("User");
         retreff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds: dataSnapshot.getChildren()){
+                    Module Nm = ds.getValue(Module.class);
 
-                    note=ds.getValue(Consultation.class);
-                    arrayList.add(note.getTextCons().toString()+ "  ");
-                    //update
+                    name = Nm.getMsg();
+
+                    if (name != null && name != " " && name != "") {
+                        listitems.add(name);
+                        //String s= dp.getName();
+                        inRecycle();
+                        // ConModule dp2=new ConModule("name :"+s);
+                        System.out.println("Name   " + name);
 
 
+                        // ConModule dp=new ConModule(name);
+                        //listitems.add(dp);
 
 
-
-                    //update
-
+                    }
+                    // myrec2 adapter=new myrec2(listitems,this);
+                    //recyclerView.setAdapter(adapter);
 
                 }
-
-                listView.setAdapter(arrayAdapter);
-
             }
 
             @Override
@@ -114,105 +98,28 @@ public class free_Consultation extends AppCompatActivity  {
         });
 
 
-
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//d
-                LayoutInflater li = LayoutInflater.from(context);
-                View promptsView = li.inflate(R.layout.note_dialog, null);
-
-                androidx.appcompat.app.AlertDialog.Builder alertDialogBuilder = new androidx.appcompat.app.AlertDialog.Builder(context);
-                // set prompts.xml to alertdialog builder
-                alertDialogBuilder.setView(promptsView);
-
-                userInput = (EditText) promptsView
-                        .findViewById(R.id.notedailoag);
-                // set dialog message
-                alertDialogBuilder
-                        .setCancelable(false)
-                        .setPositiveButton("Save",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,int id) {
+    }
 
 
-                                        String input=userInput.getText().toString();
-                                        if(LoginActivity.ID != null)
-                                            FirebaseDatabase.getInstance().getReference("User").child(LoginActivity.ID).child("msg").setValue(input.trim());
-                                        arrayList.add(input);
-                                        note.setTextCons(input.trim());
-                                        databaseReference.push().setValue(note);
-                                        Toast.makeText(free_Consultation.this," consultation is added",Toast.LENGTH_LONG).show();
-                                        listView.setAdapter(arrayAdapter);
-                                        arrayAdapter.notifyDataSetChanged();
-                                        database=FirebaseDatabase.getInstance();
-                                        retreff=database.getReference("Consultaion");
-                                        list2=new ArrayList<>();
-                                        // arrayAdapter2=new ArrayAdapter<String>(free_Consultation.this,R.layout.note_dialog,R.id.notedailoag,list2);
-                                        retreff.addValueEventListener(new ValueEventListener() {
-                                            @Override
-                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                                for(DataSnapshot ds: dataSnapshot.getChildren()){
-
-                                                    note=ds.getValue(Consultation.class);
-
-                                                    arrayList.add(note.getTextCons().toString()+ "  ");
-                                                    //update
-
-
-
-
-
-                                                    //update
-
-
-                                                }
-
-                                                listView.setAdapter(arrayAdapter);
-
-                                            }
-
-                                            @Override
-                                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                            }
-                                        });
-
-                                    }
-
-
-                                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-
-                // create alert dialog
-                androidx.appcompat.app.AlertDialog alertDialog = alertDialogBuilder.create();
-                // show it
-                alertDialog.show();
-
-
-                //d
-
-
-                //d
-
-
-
-            }
-        });
-        //ter
-
-
-
-
-        //ret*/
+    private void inRecycle() {
+        RecyclerView recyclerView = findViewById(R.id.vfree);
+        adapterm myr = new adapterm(listitems, this);
+        recyclerView.setAdapter(myr);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
     }
 
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+
+            onBackPressed();
+
+            // close this activity and return to preview activity (if there is any)
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 
 }

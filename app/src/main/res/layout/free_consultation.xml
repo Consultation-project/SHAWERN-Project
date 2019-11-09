@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/coordinator_layout"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#12858181"
+    android:orientation="vertical"
+
+
+    tools:context=".free_Consultation"><![CDATA[
     >
+
+
+
+    ]]>
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -16,48 +23,48 @@
 
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar2"
+            android:id="@+id/toolbarfree"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:background="?attr/colorPrimary"
+
             tools:ignore="DuplicateIds">
 
         </androidx.appcompat.widget.Toolbar>
-
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!--  <include layout="@layout/free_con_content_main" /> -->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add"
+        android:id="@+id/add2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
+        android:layout_marginStart="312dp"
+        android:layout_marginLeft="312dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="339dp"
+        android:layout_marginRight="339dp"
+        android:layout_marginBottom="39dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.902"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vfree"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_add_black_24dp"
-        tools:ignore="VectorDrawableCompat" />
+        tools:ignore="MissingConstraints,VectorDrawableCompat" />
 
-    <!--<EditText
-        android:id="@+id/cons"
-        android:layout_width="match_parent"
-        android:layout_height="93dp"
-        android:layout_marginTop="60dp"
-        android:ems="10"
-        android:gravity="top"
-        android:hint="enter your consultation"
-        android:imeOptions="normal"> -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/vfree"
+        android:layout_width="411dp"
+        android:layout_height="546dp"
 
 
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="74dp">
 
-    <ListView
-        android:id="@+id/lv"
-        android:layout_width="match_parent"
-        android:layout_height="426dp"
-        android:layout_marginTop="65dp"
-        android:layout_marginBottom="75dp" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
