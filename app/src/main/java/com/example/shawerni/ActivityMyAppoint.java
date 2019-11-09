@@ -5,32 +5,21 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import android.view.View;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.core.view.GravityCompat;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-
+import android.view.Menu;
 import android.view.MenuItem;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-import androidx.drawerlayout.widget.DrawerLayout;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.view.Menu;
-import android.widget.TextView;
-
-public class MainActivity extends AppCompatActivity
+public class ActivityMyAppoint extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private UserInfo userInfo;
 
     static String ID;
     // TextView emailMenu ;
@@ -40,13 +29,13 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_myappoint);
+        setContentView(R.layout.activity_main_con);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         toolbar.setTitleTextColor(Color.WHITE);
 
-        userInfo        = new UserInfo(this);
 
        //UserMenue = findViewById(R.id.userdrawer);
         //UserMenue.setText(profile.Userdrawer);
@@ -73,8 +62,8 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         if (savedInstanceState == null) {
-            setTitle(R.string.menu_home);
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, new home()).commit();
+            setTitle("Add Appointment");
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, new NewAppointActivity()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
     }
@@ -153,10 +142,9 @@ public class MainActivity extends AppCompatActivity
         }else if (id == R.id.nav_Logout) {
             setTitle("Logout");
 
-            new AlertDialog.Builder(MainActivity.this).setTitle("Logout..").setMessage("Are you sure to exit")
+            new AlertDialog.Builder(ActivityMyAppoint.this).setTitle("Logout..").setMessage("Are you sure to exit")
                     .setPositiveButton("yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            userInfo.clearUserInfo();
                             logout();
 
                         }}).setNegativeButton("NO",null).show();

@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/whitebg" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
         android:layout_marginLeft="30dp"
-        android:layout_marginRight="50dp"
         android:layout_marginTop="60dp"
+        android:layout_marginRight="50dp"
         android:layout_marginBottom="0dp"
-       >
+        android:orientation="horizontal">
 
         <FrameLayout
             android:layout_width="wrap_content"
@@ -25,8 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:orientation="vertical"
-                android:weightSum="6"
-                >
+                android:weightSum="6">
 
                 <TextView
                     android:id="@+id/lconname"
@@ -69,25 +66,25 @@
                     android:textColor="#334355"
 
                     android:textStyle="normal" />
+
                 <ImageView
                     android:id="@+id/activeIcon"
                     android:layout_width="10dp"
                     android:layout_height="10dp"
                     android:layout_marginTop="08dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_add_white_24dp"
-                    android:visibility="invisible" />
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/ic_add_white_24dp" />
 
             </LinearLayout>
         </FrameLayout>
 
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_margin="5dp"
+            android:orientation="vertical"
             android:paddingStart="5dp"
             android:paddingLeft="5dp">
 
@@ -99,45 +96,44 @@
                 android:textStyle="normal" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/appodate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text=""
-                android:textStyle="normal"
-                />
-
+                android:textStyle="normal" />
 
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/appotime"
-                android:text=""
-                android:textStyle="normal"
-                />
-            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text=""
+                android:textStyle="normal" />
+
+            <TextView
                 android:id="@+id/appostatus"
-                android:text=""
-                android:textStyle="normal"
-                />
-            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text=""
+                android:textStyle="normal" />
+
+            <TextView
                 android:id="@+id/appocommunication"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="gggg"
-                android:textStyle="normal"
-                />
+                android:textStyle="normal" />
+
             <View
-                android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="0.10dp"
+                android:layout_marginTop="15dp"
                 android:background="@color/white" />
+
             <Button
                 android:id="@+id/paid"
-                android:layout_width="42dp"
-                android:layout_height="50dp"
+                android:layout_width="92dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:background="@drawable/border"
                 android:text="Pay"
@@ -148,7 +144,6 @@
             android:layout_width="45dp"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
 
 
         </LinearLayout>

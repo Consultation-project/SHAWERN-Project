@@ -121,8 +121,8 @@ public class MainActivity_Con extends AppCompatActivity
 
         else if (id == R.id.nav_addappo) {
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.container,new NewAppointActivity()).commit();
-            setTitle("Add Appointment");
+            getSupportFragmentManager().beginTransaction().replace(R.id.container,new consultant_show()).commit();
+            setTitle("My Appointment");
 
         }
 

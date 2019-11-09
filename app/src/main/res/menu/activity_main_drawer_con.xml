@@ -14,7 +14,7 @@
             android:title="@string/menu_profile" />
         <item
             android:id="@+id/nav_addappo"
-            android:icon="@drawable/ic_payment_black_24dp"
+            android:icon="@drawable/consultant_app_icon"
             android:title="My Appointment" />
 
         <item

@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,8 +30,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -73,7 +77,7 @@ String over;
          f1 = FirebaseAuth.getInstance();
      //  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
       // getSupportActionBar().setDisplayShowHomeEnabled(true);
-     //  setTitle("Appointment Time and date");
+        //toolbar.setTitle("Appointment Time and date");
         toolbar.setTitleTextColor(Color.WHITE);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mdateField = (EditText) view.findViewById(R.id.appoint_date);
@@ -98,14 +102,24 @@ String over;
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                submitPost();
-                dialog.setMessage("You add the appointment successfully")
-                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialoginterface, int i) {
-                             //   startActivity(new Intent( NewAppointActivity.this , MainActivity.class));
-                              //  finish();
-                            }
-                        }).show();
+
+                dialog.setMessage("Are you  add appointment ?");
+
+                dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialoginterface, int i) {
+
+                        submitPost();
+                    }
+                });
+                dialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialoginterface, int i) {
+
+                    }
+                });
+                dialog.show();
+
+
+
             }
         });
         return view;
@@ -134,24 +148,41 @@ String over;
         final String userId = f1.getUid();
 
         setEditingEnabled(false);
-        //Toast.makeText(getContext(), "Tickit Posting ...", Toast.LENGTH_SHORT).show();
-        writeNewAppoint("",userId,evDate,evTime);
-       // finish();
+
+        mDatabase.child("Consultant Request").child(userId).child("Appointments").child( evDate).orderByChild("evtime").equalTo(evTime).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange( DataSnapshot dataSnapshot) {
+
+                //  Appoint Nm = dataSnapshot.getValue(Appoint.class) ;
+                System.out.println(dataSnapshot.getValue());
+
+
+                if(dataSnapshot.exists()){
+
+
+
+                    dialog.setMessage("This appointment is already exist");
+                    dialog.setPositiveButton("oK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialoginterface, int i) {
+                            return;
+                        }
+                    });
+                    dialog.show();}
+                else {        writeNewAppoint("",userId,evDate,evTime);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
 
     }
     private void writeNewAppoint(String id, String userId, String evDate, String evtime) {
 
-        Date d = new Date();
-        String sDate1=mdateField.getText().toString();
-        Date date1= null;
-        try {
-            date1 = new SimpleDateFormat("dd-MM-yyyy").parse( sDate1 );
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        CharSequence date  = android.text.format.DateFormat.format("dd-MM-yyyy",date1 );//
 
         String key = mDatabase.child("Appointments").push().getKey();
         Appoint event = new Appoint(userId, evDate,evtime,key,"N");

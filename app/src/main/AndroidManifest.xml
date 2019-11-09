@@ -48,6 +48,8 @@
         <activity android:name=".MainActivity_Con"></activity>
         <activity android:name=".LoginActivity_Con"></activity>
         <activity android:name=".payment_information"></activity>
+        <activity android:name=".ActivityMyAppoint"></activity>
+        <activity android:name=".profile_Con"></activity>
 
         <activity android:name=".answer">
 

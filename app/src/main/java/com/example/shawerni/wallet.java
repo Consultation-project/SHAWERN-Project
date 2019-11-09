@@ -59,25 +59,13 @@ public class wallet extends Fragment {
         final FragmentActivity c = getActivity();
         final RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.SearchList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(c);
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 2);
 
 
         recyclerView.setLayoutManager(layoutManager);
-        //recyclerView.addItemDecoration(new home.GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
 
         paidbtn=view.findViewById(R.id.paid);
-       /* paidbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               // Intent i = new Intent(wallet.this, paid_consultation.class);
-               // startActivity(i);
-
-                //Intent i = new Intent(getActivity(), paid_consultation.class);
-               // startActivity(i);
-                }
-        });*/
 
         f1 = FirebaseAuth.getInstance();
 
@@ -85,7 +73,7 @@ public class wallet extends Fragment {
         userInfo = new UserInfo(getContext());
 
 
-        appointDatabaseReference = FirebaseDatabase.getInstance().getReference().child( "User").child(userInfo.getKeyConId()).child("Reservation");
+        appointDatabaseReference = FirebaseDatabase.getInstance().getReference().child( "User").child(userId).child("Reservation");
         appointDatabaseReference.keepSynced(true);
 
 
@@ -100,9 +88,9 @@ public class wallet extends Fragment {
                 .setQuery(searchQuery, Reserve.class)
                 .build();
 
-        FirebaseRecyclerAdapter<Reserve, SearchPeopleVH> adapter = new FirebaseRecyclerAdapter<Reserve, SearchPeopleVH>(recyclerOptions) {
+        FirebaseRecyclerAdapter<Reserve, walet> adapter = new FirebaseRecyclerAdapter<Reserve, walet>(recyclerOptions) {
             @Override
-            protected void onBindViewHolder(@NonNull SearchPeopleVH holder, final int position, @NonNull Reserve model) {
+            protected void onBindViewHolder(@NonNull walet holder, final int position, @NonNull Reserve model) {
                 holder.status.setText(model.status);
                 holder.evtime.setText(model.evtime);
                 holder.evdate.setText(model.evDate);
@@ -155,9 +143,9 @@ public class wallet extends Fragment {
 
             @NonNull
             @Override
-            public SearchPeopleVH onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+            public walet onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
                 View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.all_single_reserv_display, viewGroup, false);
-                return new SearchPeopleVH(view);
+                return new walet(view);
             }
         };
         recyclerView.setAdapter(adapter);
@@ -194,35 +182,19 @@ public class wallet extends Fragment {
             }
         });
     }
-    private void collectPhoneNumbers(Map<String,Object> market) {
 
-
-
-        Log.d("tmz",""+market.values().toString());
-
-        //iterate through each user, ignoring their UID
-        for (Map.Entry<String, Object> entry : market.entrySet()){
-
-            //Get user map
-            Map singleUser = (Map) entry.getValue();
-            //Get phone field and append to list
-            // Itemmarketlist.add((Long) singleUser.get("phone"));
-            Log.d("tmz",""+singleUser.get("market_name"));
-        }}
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
     }
 
-    private void searchPeopleProfile(final String searchString) {
-    }
 
 
-    public static class SearchPeopleVH extends RecyclerView.ViewHolder{
+    public static class walet extends RecyclerView.ViewHolder{
         TextView name, evdate,evtime,status,appointconnection;
         Button paid;
-        public SearchPeopleVH(View itemView) {
+        public walet(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.conname);
             evdate = itemView.findViewById(R.id.appodate);

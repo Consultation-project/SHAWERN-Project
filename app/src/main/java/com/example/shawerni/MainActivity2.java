@@ -61,7 +61,7 @@ public class MainActivity2 extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         if (savedInstanceState == null) {
-            setTitle(R.string.menu_home);
+            setTitle("Available Appointment");
             getSupportFragmentManager().beginTransaction().replace(R.id.container, new consultant_appo()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }

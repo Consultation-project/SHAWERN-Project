@@ -10,6 +10,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.github.badoualy.datepicker.DatePickerTimeline;
 import com.github.badoualy.datepicker.MonthView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,19 +38,20 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class consultant_appo extends Fragment {
+import de.hdodenhof.circleimageview.CircleImageView;
+
+public class consultant_show extends Fragment {
     private FirebaseAuth f1;
     private UserInfo userInfo;
     private DatabaseReference reservDatabaseReference;
     private DatabaseReference appointDatabaseReference;
     private DatabaseReference appointDatabaseReference2;
+    Button addapp;
+    private FloatingActionButton feb;
 
     View view;
     AlertDialog.Builder dialog;
@@ -56,14 +59,21 @@ public class consultant_appo extends Fragment {
     public String  Day,Month,Year,mname;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.consultant_appo, container, false);
+        final View view = inflater.inflate(R.layout.consultant_show, container, false);
         final FragmentActivity c = getActivity();
         final RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.SearchList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(c);
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 2);
         dialog = new AlertDialog.Builder(getContext());
+        feb=view.findViewById(R.id.addapp);
 
-        recyclerView.setLayoutManager(mLayoutManager);
+        feb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+               startActivity(new Intent(getActivity(), ActivityMyAppoint.class));
+            }
+        });
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new home.GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         DatePickerTimeline timeline = view.findViewById(R.id.timeline);
@@ -87,30 +97,9 @@ public class consultant_appo extends Fragment {
 
 
 
-        appointDatabaseReference2.child("Consultant Request").child(userInfo.getKeyConId()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange( DataSnapshot dataSnapshot) {
-
-                //  Appoint Nm = dataSnapshot.getValue(Appoint.class) ;
-                System.out.println(dataSnapshot.getValue(ConModule.class).getName());
-                 mname = dataSnapshot.getValue(ConModule.class).getName();
-                Log.v("yyyyyyyyyyyyyyyyyyyy",dataSnapshot.getValue(ConModule.class).getName());
 
 
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-
-
-
-        appointDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Consultant Request").child(userInfo.getKeyConId()).child("Appointments");
+        appointDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Consultant Request").child(userId).child("Appointments");
         appointDatabaseReference.keepSynced(true);
 
         timeline.setOnDateSelectedListener(new DatePickerTimeline.OnDateSelectedListener() {
@@ -127,7 +116,7 @@ public class consultant_appo extends Fragment {
                 Month= String.valueOf(month);
                 Year= String.valueOf(year);
                 // final Query searchQuery = appointDatabaseReference.orderByChild( day+"-"+month+"-"+year );
-                final Query searchQuery = appointDatabaseReference.child( Day+"-"+(Integer.parseInt(Month)+1)+"-"+Year).orderByChild("status").equalTo("N");
+                final Query searchQuery = appointDatabaseReference.child( Day+"-"+(Integer.parseInt(Month)+1)+"-"+Year);
                 Log.v("",Day+"-"+(month+1)+"-"+year);
                 Log.v("",Day+"-"+(Integer.parseInt(Month)+1)+"-"+Year);
 
@@ -143,57 +132,35 @@ public class consultant_appo extends Fragment {
                 FirebaseRecyclerAdapter<Appoint, SearchPeopleVH> adapter = new FirebaseRecyclerAdapter<Appoint, SearchPeopleVH>(recyclerOptions) {
                     @Override
                     protected void onBindViewHolder(@NonNull SearchPeopleVH holder, final int position, @NonNull Appoint model) {
-                        holder.status.setText(model.evtime);
+                       // holder.mdate.setText(model.evDate);
+                        holder.mtime.setText(model.evtime);
 
+                        if (model.status.equals("Y")){
+                            holder.mdel.setVisibility(View.GONE);
+                    }
                         /**on list >> clicking item, then, go to single user profile*/
-                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                        holder.mdel.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 final DatabaseReference postRef = getRef(position);
                                 final String postKey = postRef.getKey();
 
                                // appointDatabaseReference.child( Day +"-"+(Month+1)+"-"+Year).child(postKey);
-                                Log.v("",appointDatabaseReference.child( Day +"-"+(Month+1)+"-"+Year).child(postKey).toString());
+                                Log.v("",appointDatabaseReference.child(  Day+"-"+(Integer.parseInt(Month)+1)+"-"+Year).child(postKey).toString());
                             //   appointDatabaseReference.child( Day +"-"+(Integer.parseInt(Month)+1)+"-"+Year).child(postKey);
-
-
-                                appointDatabaseReference.child( Day +"-"+String.valueOf(Integer.parseInt(Month)+1)+"-"+Year).child(postKey).addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange( DataSnapshot dataSnapshot) {
-
-                                          //  Appoint Nm = dataSnapshot.getValue(Appoint.class) ;
-                                        System.out.println(dataSnapshot.getValue());
-                                            final String name = dataSnapshot.child("userId").getValue().toString();
-                                            final String date = dataSnapshot.child("evDate").getValue().toString();
-                                            final String time = dataSnapshot.child("evtime").getValue().toString();
-                                            String status = "not paid";
-                                        Log.v("", dataSnapshot.child("evtime").getValue().toString());
-                                        dialog.setMessage("Are you sure to Reserve?");
-                                        dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialoginterface, int i) {
-                                                writeNewReserve(reservDatabaseReference, userId, date, time);
-                                                updateAppo(appointDatabaseReference.child( Day +"-"+(Integer.parseInt(Month)+1)+"-"+Year).child(postKey));
-                                                /*dialog.setMessage("Go to the wallet page to pay")
-                                                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                                            public void onClick(DialogInterface dialoginterface, int i) {
-                                                            }
-                                                        }).show();*/
-                                            }
-                                        });
-                                        dialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialoginterface, int i) {
-
-                                            }
-                                        });
-                                        dialog.show();
+                                dialog.setMessage("Are you sure to delete the appoiment?");
+                                dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialoginterface, int i) {
+                                        appointDatabaseReference.child(Day+"-"+(Integer.parseInt(Month)+1)+"-"+Year).child(postKey).removeValue();
                                     }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                                });
+                                dialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialoginterface, int i) {
 
                                     }
                                 });
-                                //  appointDatabaseReference.child( Day +"-"+(Month+1)+"-"+Year).child(postKey).child("status").setValue("Y");
+                                dialog.show();
+
                                 String visit_user_id = getRef(position).getKey();
                                 //Intent intent = new Intent( getActivity(), MainActivity.class);
 
@@ -210,7 +177,7 @@ public class consultant_appo extends Fragment {
                     @NonNull
                     @Override
                     public SearchPeopleVH onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-                        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.all_single_date_display, viewGroup, false);
+                        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.myappoint_display, viewGroup, false);
                         return new SearchPeopleVH(view);
                     }
                 };
@@ -230,42 +197,7 @@ public class consultant_appo extends Fragment {
         return view;
     }
 
-    private void writeNewReserve(DatabaseReference reservDatabaseReference, String userId, String evDate, String evtime) {
-        userInfo        = new UserInfo(getContext());
 
-        String key = reservDatabaseReference.child("Reservation").push().getKey();
-        Reserve event = new Reserve(userId, evDate,evtime,key,"Not Paid",mname,userInfo.getKeyMethod());
-
-        Map<String, Object> postValues = event.toMap();
-
-        Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/User/"+ userId + "/Reservation/" + key, postValues);
-        reservDatabaseReference.updateChildren(childUpdates);
-    }
-
-    private void updateAppo(DatabaseReference postRef) {
-        postRef.runTransaction(new Transaction.Handler() {
-            @Override
-            public Transaction.Result doTransaction(MutableData mutableData) {
-                Appoint p = mutableData.getValue(Appoint.class);
-                if (p == null) {
-                    return Transaction.success(mutableData);
-                }
-
-                p.status = "Y";
-
-
-                // Set value and report transaction success
-                mutableData.setValue(p);
-                return Transaction.success(mutableData);
-            }
-
-            @Override
-            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
-
-            }
-        });
-    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -277,10 +209,14 @@ public class consultant_appo extends Fragment {
     }
 
     public static class SearchPeopleVH extends RecyclerView.ViewHolder{
-        TextView name, status;
+        TextView mdate, mtime;
+        CircleImageView mdel;
         public SearchPeopleVH(View itemView) {
             super(itemView);
-            status = itemView.findViewById(R.id.all_user_status);
+            mtime = itemView.findViewById(R.id.appoint_time);
+           // mdate = itemView.findViewById(R.id.appdate);
+            mdel = itemView.findViewById(R.id.delappoint);
+
 
         }
     }
