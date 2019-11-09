@@ -36,7 +36,6 @@
     <string name="age">Age</string>
 
 
-
     <string name="forget">
         <a href=" https://www.google.com">Forget password</a>
     </string>
@@ -64,7 +63,6 @@
     <string name="createACC">Create a new Account</string>
 
 
-
     <string name="activity_title_home">Notes</string>
     <string name="msg_no_notes">No Consultations found!</string>
     <string name="lbl_new_note_title">New Consultation</string>
@@ -87,7 +85,7 @@
     <string name="paymentImage" translatable="false"> Attach the conversion image </string>
     <string name="payNow" translatable="false"> pay Now </string>
     <string name="BookingInfo" translatable="false"> Booking Information </string>
-
+    <string name="major" translatable="false">major</string>
 
 
 </resources>
