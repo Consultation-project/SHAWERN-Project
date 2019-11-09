@@ -10,7 +10,7 @@ public class ConModule {
     private String id;
     private String major;
     private String url;
-    int x;
+    int y;
 
 
     public ConModule(String id , String major , String email, String name, String password, String phoneNum , String url ) {

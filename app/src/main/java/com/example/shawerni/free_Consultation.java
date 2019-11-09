@@ -28,6 +28,7 @@ public class free_Consultation extends AppCompatActivity {
     String st;
     private RecyclerView recyclerView;
     FloatingActionButton add;
+    int x;
 
     // ArrayList<String> listitems ;
     //ArrayAdapter<String> arrayAdapter;

@@ -15,9 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class adapterm extends RecyclerView.Adapter<adapterm.ViewHolder> {
-    public String st;
+    public String st, u;
     private ArrayList<String> listitem;
     private Context context;
+
 
     public adapterm(ArrayList<String> listitem, free_Consultation context) {
         this.listitem = listitem;
