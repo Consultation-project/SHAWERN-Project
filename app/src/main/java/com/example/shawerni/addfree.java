@@ -11,7 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 public class addfree extends AppCompatActivity {
     TextView tvcon;
     String con;
-    int y;
+    int o;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

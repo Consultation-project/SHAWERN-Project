@@ -25,7 +25,7 @@ public class free_Consultation extends AppCompatActivity {
     //private ArrayList<ConModule> con1 = new ArrayList<>();
     ConModule n = new ConModule();
     FirebaseDatabase database;
-    String st;
+    String st6;
     private RecyclerView recyclerView;
     FloatingActionButton add;
     int x;
