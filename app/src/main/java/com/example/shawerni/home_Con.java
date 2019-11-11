@@ -58,6 +58,10 @@ public class home_Con extends Fragment {
     private String idS;
     private ArrayList<String> MSG = new ArrayList<>();
     private final DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("User");
+    FirebaseAuth firebaseAuth;
+    FirebaseDatabase database;
+    DatabaseReference retreffq ;
+    String consul;
     private CustomAdapter customAdapter;
 
     public home_Con() {
@@ -73,6 +77,31 @@ Log.d(TAG,"onCreate");
         prepareMovieData();
 
 
+        database= FirebaseDatabase.getInstance();
+        retreffq=database.getReference("Consultant Request");
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        uid =firebaseAuth.getCurrentUser().getUid();
+
+
+
+        retreffq.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                consul = dataSnapshot.child("name").getValue().toString();
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
 
         recyclerView.addOnItemTouchListener(
@@ -83,6 +112,7 @@ Log.d(TAG,"onCreate");
                         Intent intent = new Intent(getActivity(), answer.class);
                         intent.putExtra("SENDER", requestList.get(position).getSender());
                         intent.putExtra("MSG", requestList.get(position).getMsg());
+                        intent.putExtra("Con", consul);
                         startActivity(intent);
 
                     }

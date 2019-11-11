@@ -28,6 +28,7 @@ public class MyReclyecon extends RecyclerView.Adapter<MyReclyecon.ViewHolder> im
     int x;
     private Context con;
     private ContactsAdapterListener listener;
+    String share;
 
 
     public MyReclyecon(ArrayList<String> name, ArrayList<String> uid, Context con) {
@@ -35,7 +36,7 @@ public class MyReclyecon extends RecyclerView.Adapter<MyReclyecon.ViewHolder> im
         contactListFiltered = name;
         uID = uid;
         this.con = con;
-       // this.listener = listener;
+        // this.listener = listener;
 
 
     }
@@ -129,6 +130,12 @@ public class MyReclyecon extends RecyclerView.Adapter<MyReclyecon.ViewHolder> im
             paerntlyout = itemView.findViewById(R.id.paernt);
         }
     }
+    public void updat(ArrayList<String> list2 , String share){
+        this.share=share;
+        Name = new ArrayList<>();
+        Name.addAll(list2);
+        notifyDataSetChanged();
 
+    }
 
 }

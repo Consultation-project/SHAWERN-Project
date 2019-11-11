@@ -1,10 +1,15 @@
 package com.example.shawerni;
+
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.MenuItem;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,16 +18,22 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 public class payment_information extends AppCompatActivity {
-
-
 
     TextView User;
     TextView Email;
@@ -32,9 +43,8 @@ public class payment_information extends AppCompatActivity {
     TextView ReservationType;
     ImageView paymentImage ;
     TextView paymentImagelable ;
-    Button payNow;
+    static Button payNow;
     View view;
-
 
     String UserName;
     String UserEmail;
@@ -42,21 +52,31 @@ public class payment_information extends AppCompatActivity {
     String DATE ;
     String TIME ;
     String Type ;
-
-    static int PReqCode = 100 ;
-    static int REQUESCODE = 1;
-    TextView payLable ;
     Uri pickedImageUri ;
     String url;
 
+    private FirebaseAuth f1 = FirebaseAuth.getInstance();
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String userid = user.getUid();
 
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference df ;
-    String i;
+    StorageReference storage = FirebaseStorage.getInstance().getReference ();
+    private final DatabaseReference myRef = database.getReference("Confirm payments");
+    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User");
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.payment_information);
+
+
+        Toolbar toolbar = findViewById(R.id.toolbar2);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Booking Information");
+        toolbar.setTitleTextColor(Color.WHITE);
+
 
         User = findViewById (R.id.user);
         Email = findViewById (R.id.eEmail);
@@ -65,8 +85,48 @@ public class payment_information extends AppCompatActivity {
         Time = findViewById (R.id.timeConsultation);
         ReservationType = findViewById (R.id.reservationType);
         payNow = findViewById(R.id.button3);
+        paymentImagelable = findViewById (R.id.paymentImage);
         paymentImage = findViewById (R.id.cv_image);
-        paymentImage.setOnClickListener (new View.OnClickListener () {
+
+
+        reference.child(userid).addListenerForSingleValueEvent(new ValueEventListener () {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                User.setText(dataSnapshot.child("name").getValue().toString());
+                Email.setText(dataSnapshot.child("email").getValue().toString());
+
+
+                Intent intent = getIntent();
+
+                if (intent.getExtras() != null) {
+
+                    ConsultantName.setText (intent.getStringExtra ("name"));
+                    Date.setText (intent.getStringExtra ("date"));
+                    Time.setText (intent.getStringExtra ("time"));
+                    ReservationType.setText (intent.getStringExtra ("method"));
+
+
+
+                }
+
+                UserName = User.getText().toString();
+                UserEmail = Email.getText().toString();
+                COnsultantName = ConsultantName.getText().toString();
+                DATE = Date.getText().toString();
+                TIME = Time.getText().toString();
+                Type = ReservationType.getText().toString();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+        paymentImage.setOnClickListener(new View.OnClickListener () {
             @Override
             public void onClick(View view) {
 
@@ -106,111 +166,80 @@ public class payment_information extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(payment_information.this , "your payment was successfully",Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(payment_information.this,MainActivity.class);
-                startActivity(intent);
+                if (checkDataEntered()){
 
-                finish();
-
-            /* if ( pickedImageUri != null){
-
-                    Calendar calendar = Calendar.getInstance();
-
-                    //progressDialog.setMessage("wait for upload the image ...");
-                    //progressDialog.show();
-
-                    StorageReference storage = FirebaseStorage.getInstance().getReference ();
-                    final StorageReference storageRef = storage.child ("paymentImage").child ("img_"+calendar.getTimeInMillis());
-                    storageRef.putFile (pickedImageUri).addOnSuccessListener (new OnSuccessListener<UploadTask.TaskSnapshot> () {
-
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            storageRef.getDownloadUrl ().addOnSuccessListener (new OnSuccessListener<Uri> () {
-                                @Override
-                                public void onSuccess(Uri uri) {
-
-                                    url=String.valueOf(pickedImageUri);
-                                }
-                            });
-
-                            //progressDialog.dismiss();
-                            Toast.makeText(payment_information.this , "your payment was successfully",Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(payment_information.this,MainActivity.class);
-                            startActivity(intent);
-
-                            finish();
-
-                        }
-                    }).addOnFailureListener(new OnFailureListener () {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-
-                            Toast.makeText(payment_information.this,"the image upload process failed , try again!",Toast.LENGTH_LONG).show();
-                        }
-                    });
                 }
 
-                else {
-                    paymentImagelable.setError (" Please Choose Image  ");
-                    paymentImagelable.findFocus ();
-                }
-*/
+
             }
         });
 
+    }
+
+    private boolean checkDataEntered() {
+
+        if ( pickedImageUri != null){
+
+
+
+            final StorageReference storageRef = storage.child ("Confirm Payments").child (  System.currentTimeMillis () + "."+ getFileExtension (pickedImageUri));
+
+            storageRef.putFile (pickedImageUri).addOnSuccessListener (new OnSuccessListener<UploadTask.TaskSnapshot> () {
+
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+
+                    storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            Uri downloadUrl = uri;
+                            //Do what you want with the url
+
+                            String uid = f1.getCurrentUser().getUid();
+                            String id = myRef.push().getKey();
+
+                            PayConfirm  m = new PayConfirm(id,UserName,UserEmail,COnsultantName,DATE,
+                                    TIME,Type, downloadUrl.toString ());
+
+                            myRef.child(uid).setValue(m);
+                        }
 
 
 
 
-
-
-
-
-
-        PayConfirm payConfirm= new PayConfirm ();
-        FirebaseDatabase database;
-        DatabaseReference retreff ;
-
-
-        // name1 = getIntent().getStringExtra("name");
-
-       //  e1.setText(name1);
-        database= FirebaseDatabase.getInstance();
-        retreff=database.getReference("Pay Confirm ");
-
-        retreff.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-
-                    PayConfirm Nm = snapshot.getValue(PayConfirm.class);
-
-                    UserName = Nm.getName ();
-                    UserEmail = Nm.getEmail ();
-                    COnsultantName = Nm.getConsultentName ();
-                    DATE = Nm.getDate ();
-                    TIME = Nm.getTime ();
-                    Type = Nm.getType ();
-
-                    User.setText(UserName);
-                    Email.setText(UserEmail );
-                    ConsultantName.setText(COnsultantName);
-                    Date.setText(DATE);
-                    Time.setText(TIME);
-                    ReservationType.setText(Type);
-
-                    }
-
-
+                    });
                 }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+                    Toast.makeText(payment_information.this,"the image upload process failed , try again!",Toast.LENGTH_LONG).show();
+                }
+            });
+
+        }
+
+        else {
+
+            paymentImagelable.setError(" Please Choose Image ");
+            paymentImagelable.findFocus();
+            return false;
+        }
 
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });}
 
+        Toast.makeText(payment_information.this, "wait until get approval from admin", Toast.LENGTH_SHORT).show();
+
+
+        Intent intent = new Intent(payment_information.this,MainActivity.class);
+        startActivity(intent);
+
+        finish();
+        return true;
+
+    }
 
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -223,4 +252,25 @@ public class payment_information extends AppCompatActivity {
         }
 
     }
+
+    private String getFileExtension (Uri uri){
+
+        ContentResolver cR = getContentResolver ();
+        MimeTypeMap mime = MimeTypeMap.getSingleton ();
+        return mime.getExtensionFromMimeType (cR.getType (uri));
+
+
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+
+            onBackPressed();
+
+            // close this activity and return to preview activity (if there is any)
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

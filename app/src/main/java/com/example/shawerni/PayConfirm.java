@@ -1,8 +1,5 @@
 package com.example.shawerni;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class PayConfirm {
 
     private String id;
@@ -14,7 +11,11 @@ public class PayConfirm {
     private String type;
 
 
-    public PayConfirm(String id , String name, String email,String consultentName , String date, String time , String type ) {
+
+    private String url;
+
+
+    public PayConfirm(String id , String name, String email,String consultentName , String date, String time , String type ,String url) {
 
         this.id = id;
         this.name = name;
@@ -23,6 +24,7 @@ public class PayConfirm {
         this.date = date;
         this.time= time;
         this.type = type;
+        this.url = url;
     }
 
 
@@ -83,5 +85,12 @@ public class PayConfirm {
     public void setType(String type) {
         this.type = type;
     }
-}
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+}

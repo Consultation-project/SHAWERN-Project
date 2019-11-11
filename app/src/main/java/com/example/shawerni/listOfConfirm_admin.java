@@ -1,70 +1,57 @@
 package com.example.shawerni;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class ConsultantNewVersion extends AppCompatActivity {
+public class listOfConfirm_admin extends AppCompatActivity {
+
     private static final String TAG = "Activity";
-    final private ArrayList<String> nId = new ArrayList<>();
-    final private ArrayList<String> nName = new ArrayList<>();
-    private ArrayList<ConModule> con = new ArrayList<>();
-    private ArrayList<String>list = new ArrayList<>();
-    MyReclyecon myr ;
-    ConModule n =new ConModule();
+    private ArrayList<String> nId = new ArrayList<>();
+    private ArrayList<String> nName = new ArrayList<>();
+
     FirebaseDatabase database;
     DatabaseReference retreff ;
     String i;
-    String X;
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.concrecycle);
-        Log.d(TAG, "onCreate");
-        Ename();
+        setContentView(R.layout.listofconfirm_admin);
 
         Toolbar toolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-        setTitle("Consultant");
+        getSupportActionBar().setTitle("payment requests");
         toolbar.setTitleTextColor(Color.WHITE);
+        Log.d(TAG, "onCreate");
+        Ename();
 
 
     }
-
     private void Ename() {
         database= FirebaseDatabase.getInstance();
-        retreff=database.getReference("Consultant Request");
+        retreff=database.getReference("Confirm payments");
 
-        retreff.addValueEventListener(new ValueEventListener() {
+        retreff.addValueEventListener(new ValueEventListener () {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot :dataSnapshot.getChildren()){
-                    ConModule Nm = snapshot.getValue(ConModule.class) ;
+                    PayConfirm Nm = snapshot.getValue(PayConfirm.class) ;
 
                     String userId=snapshot.getKey().toString();
                     String name = Nm.getName();
@@ -72,8 +59,6 @@ public class ConsultantNewVersion extends AppCompatActivity {
                     nId.add(userId);
                     inRecycle ();
                 }
-
-
             }
 
             @Override
@@ -88,50 +73,17 @@ public class ConsultantNewVersion extends AppCompatActivity {
 
     private void inRecycle (){
         RecyclerView recyclerView= findViewById(R.id.recycler_view);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        myr = new MyReclyecon(nName,nId,this);
+        listOfConfirm myr = new listOfConfirm(nName,nId,this);
         recyclerView.setAdapter(myr);
+        recyclerView.setLayoutManager(new LinearLayoutManager (this));
+
+
+
+
+
 
 
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_search_bar,menu);
-
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        final SearchView searchView = (SearchView) searchItem.getActionView();
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText){
-                String userinput =newText.toLowerCase();
-                ArrayList<String> s2 = new ArrayList<>();
-                int i;
-                for (i=0 ; i <= nName.size() ;i++){
-                    String singleN = nName.get(i);
-                    if(singleN != null)
-                    if ((singleN.toLowerCase().contains(userinput))){
-                        s2.add(singleN);
-                    }
-                }
-                myr.getFilter().filter(newText);
-                //myr.updat(s2, userinput);
-                return false;
-            }
-        });
-
-        return true;
-    }
-
 
     public boolean onOptionsItemSelected(MenuItem item) {
         // handle arrow click here

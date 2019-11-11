@@ -55,6 +55,10 @@
         <activity android:name=".ForUser" />
         <activity android:name=".ConsultantNewVersion" />
         <activity android:name=".MyReclyecon" />
+        <activity android:name=".answer2"></activity>
+        <activity android:name=".listOfConfirm_admin"></activity>
+        <activity android:name=".forConfirm"></activity>
+        <activity android:name=".listOfConfirm"></activity>
     </application>
 
 </manifest>

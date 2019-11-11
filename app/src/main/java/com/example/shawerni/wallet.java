@@ -1,6 +1,7 @@
 package com.example.shawerni;
 
-import android.content.DialogInterface;
+
+
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -11,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,8 +24,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.github.badoualy.datepicker.DatePickerTimeline;
-import com.github.badoualy.datepicker.MonthView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,13 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
-import com.google.firebase.database.ValueEventListener;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 public class wallet extends Fragment {
@@ -50,22 +42,36 @@ public class wallet extends Fragment {
 
     private DatabaseReference appointDatabaseReference;
     View view;
-
+    String name ;
+    String time ;
+    String date ;
+    String method ;
     public String  Day,Month,Year;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.reserv_appo, container, false);
         final FragmentActivity c = getActivity();
         final RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.SearchList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(c);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 2);
 
 
         recyclerView.setLayoutManager(layoutManager);
+        //recyclerView.addItemDecoration(new home.GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
 
         paidbtn=view.findViewById(R.id.paid);
+       /* paidbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // Intent i = new Intent(wallet.this, paid_consultation.class);
+               // startActivity(i);
+                //Intent i = new Intent(getActivity(), paid_consultation.class);
+               // startActivity(i);
+                }
+        });*/
 
         f1 = FirebaseAuth.getInstance();
 
@@ -73,7 +79,7 @@ public class wallet extends Fragment {
         userInfo = new UserInfo(getContext());
 
 
-        appointDatabaseReference = FirebaseDatabase.getInstance().getReference().child( "User").child(userId).child("Reservation");
+        appointDatabaseReference = FirebaseDatabase.getInstance().getReference().child( "Confirm payment");
         appointDatabaseReference.keepSynced(true);
 
 
@@ -88,14 +94,27 @@ public class wallet extends Fragment {
                 .setQuery(searchQuery, Reserve.class)
                 .build();
 
-        FirebaseRecyclerAdapter<Reserve, walet> adapter = new FirebaseRecyclerAdapter<Reserve, walet>(recyclerOptions) {
+        FirebaseRecyclerAdapter<Reserve, SearchPeopleVH> adapter = new FirebaseRecyclerAdapter<Reserve, SearchPeopleVH>(recyclerOptions) {
             @Override
-            protected void onBindViewHolder(@NonNull walet holder, final int position, @NonNull Reserve model) {
+            protected void onBindViewHolder(@NonNull SearchPeopleVH holder, final int position, @NonNull Reserve model) {
+
+
+
+
+
+
+
                 holder.status.setText(model.status);
                 holder.evtime.setText(model.evtime);
                 holder.evdate.setText(model.evDate);
                 holder.name.setText(model.conName);
                 holder.appointconnection.setText(model.appointconnection);
+
+                name = model.conName;
+                time = model.evtime ;
+                date = model.evDate;
+                method = model.appointconnection;
+
 
                 holder.paid.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -104,18 +123,29 @@ public class wallet extends Fragment {
                         final String postKey = postRef.getKey();
 
 
+
                         String visit_user_id = getRef(position).getKey();
                         Intent intent = new Intent( getActivity(), payment_information.class);
 
+                        intent.putExtra ("name",name );
+                        intent.putExtra ("time",time );
+                        intent.putExtra ("date",date );
+                        intent.putExtra ("method",method );
 
-                         startActivity(intent);
+                        startActivity(intent);
 
 
                     }
                 });
 
+                if (forConfirm.changeStatus == true ){
 
-                /**on list >> clicking item, then, go to single user profile*/
+                    holder.status.setText ("Paid");
+                    holder.paid.setEnabled(false);
+                }
+
+
+                /*on list >> clicking item, then, go to single user profile*/
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -143,9 +173,9 @@ public class wallet extends Fragment {
 
             @NonNull
             @Override
-            public walet onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+            public SearchPeopleVH onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
                 View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.all_single_reserv_display, viewGroup, false);
-                return new walet(view);
+                return new SearchPeopleVH(view);
             }
         };
         recyclerView.setAdapter(adapter);
@@ -182,19 +212,35 @@ public class wallet extends Fragment {
             }
         });
     }
+    private void collectPhoneNumbers(Map<String,Object> market) {
 
+
+
+        Log.d("tmz",""+market.values().toString());
+
+        //iterate through each user, ignoring their UID
+        for (Map.Entry<String, Object> entry : market.entrySet()){
+
+            //Get user map
+            Map singleUser = (Map) entry.getValue();
+            //Get phone field and append to list
+            // Itemmarketlist.add((Long) singleUser.get("phone"));
+            Log.d("tmz",""+singleUser.get("market_name"));
+        }}
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
     }
 
+    private void searchPeopleProfile(final String searchString) {
+    }
 
 
-    public static class walet extends RecyclerView.ViewHolder{
-        TextView name, evdate,evtime,status,appointconnection;
+    public static class SearchPeopleVH extends RecyclerView.ViewHolder{
+        static TextView name, evdate,evtime,status,appointconnection;
         Button paid;
-        public walet(View itemView) {
+        public SearchPeopleVH(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.conname);
             evdate = itemView.findViewById(R.id.appodate);
@@ -203,6 +249,7 @@ public class wallet extends Fragment {
             appointconnection = itemView.findViewById(R.id.appocommunication);
             //method = itemView.findViewById(R.id.appocommunication);
             paid = itemView.findViewById(R.id.paid);
+
 
             //Type of communication
         }

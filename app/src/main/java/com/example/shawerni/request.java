@@ -8,7 +8,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class request extends AppCompatActivity {
-    Button req, log;
+    Button req, log,py;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +16,7 @@ public class request extends AppCompatActivity {
         setContentView(R.layout.activity_request);
         req = findViewById(R.id.requestlist);
         log = findViewById(R.id.Logoutad);
+        py=findViewById(R.id.paymentad);
         req.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -29,6 +30,13 @@ public class request extends AppCompatActivity {
                 Intent i = new Intent(request.this, Registeration_sections.class);
                 startActivity(i);
 
+            }
+        });
+        py.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(request.this, listOfConfirm_admin.class);
+                startActivity(i);
             }
         });
     }
