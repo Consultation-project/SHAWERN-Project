@@ -59,6 +59,7 @@
         <activity android:name=".listOfConfirm_admin"></activity>
         <activity android:name=".forConfirm"></activity>
         <activity android:name=".listOfConfirm"></activity>
+        <activity android:name=".ActivityMyAppoint"></activity>
     </application>
 
 </manifest>

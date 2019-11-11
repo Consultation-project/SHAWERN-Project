@@ -5,13 +5,34 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.NoActionBar"
+        tools:ignore="MissingConstraints">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="?attr/colorPrimary">
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/untitleddesign"
         android:gravity="center"
         android:orientation="vertical"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="-165dp">
+
+
+
 
         <TextView
             android:id="@+id/Des"
@@ -30,14 +51,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginRight="120dp"
-            android:layout_marginEnd="120dp"
-            android:layout_marginLeft="120dp"
             android:layout_marginStart="120dp"
+            android:layout_marginLeft="120dp"
             android:layout_marginTop="140dp"
-            android:text="Reserve"
+            android:layout_marginEnd="120dp"
+            android:layout_marginRight="120dp"
             android:background="@drawable/border"
-            android:textColor="@color/white"/>
+            android:text="Reserve"
+            android:textColor="@color/white" />
 
 
     </LinearLayout>

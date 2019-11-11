@@ -27,14 +27,17 @@
 
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_width="300dp"
+        android:layout_gravity="center"
+        android:layout_height="200dp"
+        android:gravity="center"
         android:layout_marginTop="60dp">
 
         <LinearLayout
             android:id="@+id/single_reciveReq1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="200dp"
+            android:gravity="center"
             android:background="@drawable/whitebg"
             android:orientation="vertical">
 
@@ -42,11 +45,11 @@
                 android:id="@+id/sender1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="12dp"
                 android:layout_toRightOf="@+id/images"
                 android:textColor="@android:color/holo_blue_dark"
-                android:textSize="15sp" />
+                android:textSize="16dp" />
 
         </LinearLayout>
 
@@ -61,77 +64,71 @@
 
     <TextView
         android:id="@+id/ANSWER"
-        android:layout_width="wrap_content"
+        android:layout_width="370dp"
+        android:layout_gravity="center"
         android:layout_height="29dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="35dp"
         android:layout_marginTop="40dp"
         android:layout_toRightOf="@+id/images"
         android:text="Answers:"
         android:layout_marginBottom="5dp"
         android:textColor="#DCE1E2"
-        android:textSize="24sp"
+        android:textSize="19dp"
         android:textStyle="bold"
         tools:ignore="InvalidId" />
 
 
+    <LinearLayout
+        android:id="@+id/a"
+        android:layout_width="300dp"
+        android:layout_gravity="center"
+        android:layout_height="200dp"
+        android:background="@drawable/whitebg"
 
+        android:orientation="vertical">
 
 
         <LinearLayout
-            android:id="@+id/a"
+            android:id="@+id/answerslist"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/whitebg"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="58dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="@dimen/dimen_10"
+                android:layout_marginTop="@dimen/dimen_10"
+                android:background="@drawable/user" />
 
-            <LinearLayout
-                android:id="@+id/answerslist"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/whitebg"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="@dimen/dimen_10"
-                    android:layout_marginLeft="@dimen/dimen_10"
-                    android:background="@drawable/user"/>
-
-
-                <TextView
-                    android:id="@+id/Name2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Name"
-                    android:textSize="24sp"
-                    android:layout_marginLeft="@dimen/dimen_10"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_marginTop="19dp"/>
-
-
-            </LinearLayout>
 
             <TextView
-                android:id="@+id/ans"
+                android:id="@+id/Name2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="hhhh"
-                android:textSize="24sp"
-                android:layout_gravity="center"
-                android:textColor="@android:color/holo_blue_dark"
-                android:layout_marginTop="15dp"/>
-
+                android:layout_marginLeft="@dimen/dimen_10"
+                android:layout_marginTop="19dp"
+                android:text="Name"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16dp"
+                android:textStyle="bold" />
 
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/ans"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:text="hhhh"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="16dp" />
 
 
-
-
+    </LinearLayout>
 
 
 </LinearLayout>

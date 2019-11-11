@@ -1,9 +1,11 @@
 package com.example.shawerni;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.FocusFinder;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -48,6 +51,16 @@ public class ForUser extends AppCompatActivity {
         ConModule conModule= new ConModule();
         FirebaseDatabase database;
         DatabaseReference retreff ;
+
+        Toolbar toolbar = findViewById(R.id.toolbar2);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        setTitle("Consultant information");
+        toolbar.setTitleTextColor(Color.WHITE);
+
         name1 = getIntent().getStringExtra("name");
         uId=getIntent().getStringExtra("userId");
         userInfo        = new UserInfo(this);
@@ -99,4 +112,16 @@ public class ForUser extends AppCompatActivity {
 
 
 
-    }}
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+
+            onBackPressed();
+
+            // close this activity and return to preview activity (if there is any)
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+}

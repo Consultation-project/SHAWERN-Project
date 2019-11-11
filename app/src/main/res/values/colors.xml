@@ -5,7 +5,7 @@
     <color name="colorPrimaryDark">#8290AD</color>
     <color name="colorAccent">#81C6A4</color>
     <color name="white">#FEFEFE</color>
-    <color name="msg_no_notes">#999</color>
+    <color name="msg_no_notes">#EBECEF</color>
     <color name="hint_enter_note">#89c3c3c3</color>
     <color name="timestamp">#858585</color>
     <color name="note_list_text">#232323</color>
