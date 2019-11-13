@@ -222,8 +222,7 @@ public class payment_information extends AppCompatActivity {
 
         else {
 
-            paymentImagelable.setError(" Please Choose Image ");
-            paymentImagelable.findFocus();
+            Toast.makeText(payment_information.this,"Please Choose Image!",Toast.LENGTH_LONG).show();
             return false;
         }
 
