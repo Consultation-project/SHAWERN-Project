@@ -1,11 +1,19 @@
 package com.example.shawerni;
 
+
 import java.util.Date;
 
-public class Consultation {
+public class Consultation2 {
     String textCons;
     String user_id;
     Date date;
+
+    public Consultation2() {
+    }
+
+    public Consultation2(String textCons) {
+        this.textCons = textCons;
+    }
 
     public Date getDate() {
         return date;
@@ -23,13 +31,6 @@ public class Consultation {
         this.user_id = user_id;
     }
 
-    public Consultation() {
-    }
-
-    public Consultation(String textCons) {
-        this.textCons = textCons;
-    }
-
     public String getTextCons() {
         return textCons;
     }
@@ -39,4 +40,3 @@ public class Consultation {
     }
 
 }
-

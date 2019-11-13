@@ -35,8 +35,7 @@ public class request extends AppCompatActivity {
         py.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(request.this, listOfConfirm_admin.class);
-                startActivity(i);
+
             }
         });
     }
