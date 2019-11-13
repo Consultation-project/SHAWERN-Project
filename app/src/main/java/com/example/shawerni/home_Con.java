@@ -77,30 +77,7 @@ Log.d(TAG,"onCreate");
         prepareMovieData();
 
 
-        database= FirebaseDatabase.getInstance();
-        retreffq=database.getReference("Consultant Request");
 
-        firebaseAuth = FirebaseAuth.getInstance();
-
-        uid =firebaseAuth.getCurrentUser().getUid();
-
-
-
-        retreffq.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                consul = dataSnapshot.child("name").getValue().toString();
-
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
 
