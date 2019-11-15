@@ -56,7 +56,7 @@ public class addfree extends AppCompatActivity {
 
         toolbar.setTitleTextColor(Color.WHITE);
 
-       // Uid = FirebaseAuth.getCurrentUser().getUid();
+        // Uid = FirebaseAuth.getCurrentUser().getUid();
 
 
 
@@ -93,7 +93,7 @@ public class addfree extends AppCompatActivity {
 
     private void inRecycle() {
 
-       // RecyclerView recyclerView = findViewById(R.id.recycler_view1);
+        // RecyclerView recyclerView = findViewById(R.id.recycler_view1);
         //anAdapter myr = new anAdapter(anQList, context);
         //recyclerView.setAdapter(myr);
 

@@ -25,9 +25,10 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ConsultantNewVersion extends AppCompatActivity {
+
     private static final String TAG = "Activity";
-    final private ArrayList<String> nId = new ArrayList<>();
-    final private ArrayList<String> nName = new ArrayList<>();
+    private ArrayList<String> nId = new ArrayList<>();
+    private ArrayList<String> nName = new ArrayList<>();
     private ArrayList<ConModule> con = new ArrayList<>();
     private ArrayList<String>list = new ArrayList<>();
     MyReclyecon myr ;
@@ -72,7 +73,7 @@ public class ConsultantNewVersion extends AppCompatActivity {
                     nId.add(userId);
                     inRecycle ();
                 }
-
+                setnName(nName);
 
             }
 
@@ -96,6 +97,21 @@ public class ConsultantNewVersion extends AppCompatActivity {
 
     }
 
+
+    private void setnName(ArrayList<String> nName){
+
+       this.nName = nName;
+
+    }
+
+    private ArrayList<String> getnName(){
+
+        return nName;
+
+    }
+
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
 
@@ -114,17 +130,16 @@ public class ConsultantNewVersion extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText){
                 String userinput =newText.toLowerCase();
-                ArrayList<String> s2 = new ArrayList<>();
-                int i;
-                for (i=0 ; i <= nName.size() ;i++){
-                    String singleN = nName.get(i);
-                    if(singleN != null)
-                    if ((singleN.toLowerCase().contains(userinput))){
-                        s2.add(singleN);
+                ArrayList<String> s2 = new ArrayList<String>();
+
+                for (String s : getnName()){
+
+                    if ((s.toLowerCase().startsWith(userinput))){
+                        s2.add(s);
                     }
                 }
-                myr.getFilter().filter(newText);
-                //myr.updat(s2, userinput);
+               // myr.getFilter().filter(newText);
+                myr.updat(s2, userinput);
                 return false;
             }
         });

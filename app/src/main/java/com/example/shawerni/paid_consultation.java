@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +13,19 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.ArrayList;
+
 public class paid_consultation extends AppCompatActivity {
 
     ListView listView;
+    MyReclyecon myr ;
+    ArrayList personCer = new ArrayList();
 
     private UserInfo userInfo;
     String[] personNames = {"Abdulilah Almeghem","Islam Rajeb","Mosaad Almejel","Mohammed Abo Alazm","Abdullah Alabod"};
@@ -68,32 +75,20 @@ public class paid_consultation extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),ListdataActivity.class);
                 //intent.putExtra("name",personNames[i]);
 
-                String[] personCer = {"- Holds a bachelor's degree in law.\n" +
-                        "- He holds many training courses in the fields of law and law.\n" +
-                        "- Trainee lawyer\n"
-                        ,
-                        "- He holds a Bachelor of Laws from Cairo University.\n" +
-                                "- He holds an MA in International Law from Cairo University.\n" +
-                                "- He holds a Diploma of Islamic Sharia from Cairo University.\n" +
-                                "- Appeal lawyer and member of the Egyptian Bar Association.\n"
-                        ,
-                        "- He holds a high diploma in American legal systems from the University of Cincinnati, USA.\n" +
-                                "- He holds a master's degree in law from the University of Cincinnati, USA.\n" +
-                                "- He holds a bachelor's degree in Sharia from Imam Muhammad bin Saud Islamic University\n"
-                        ,
-                        "- Holds a bachelor's degree from the Faculty of Law, Menoufia University, Egypt.\n" +
-                                "- Holds specialized courses in international arbitration from the International Arbitration Judges Club in Cairo.\n" +
-                                "- Member of the Egyptian Bar Association and a member of the Arab Lawyers Union\n" +
-                                "- Member of the International Arbitration Judges Club in the Arab Republic of Egypt."
-                        ,
-                        "- He holds a bachelor's degree from Imam Muhammad bin Saud Islamic University (Sharia).\n" +
-                                "- Legal Consultant at Al Salem Law Firm.\n" +
-                                "- Legal Consultant at Durrat Al Ard Contracting (Landy).\n" };
+                personCer.add("b");
+                personCer.add("b");
+                personCer.add("b");
+                personCer.add("c");
+                personCer.add("G");
+                personCer.add("n");
+                personCer.add("l");
+                personCer.add("g");
+
 
                 //  intent.putExtra("image",personImages[i]);
-                userInfo.setKeyConid(personNames[i]);
-                userInfo.setKeyImagename(personImages[i]);
-                userInfo.setCer(personCer[i]);
+               // userInfo.setKeyConid(personNames[i]);
+               // userInfo.setKeyImagename(personImages[i]);
+               // userInfo.setCer(personCer[i]);
                 startActivity(intent);
 
             }
@@ -144,5 +139,46 @@ public class paid_consultation extends AppCompatActivity {
 
 
         }
+
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_search_bar,menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        final SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                String userinput = newText.toLowerCase();
+                String[] s2 = new String[100];
+                int i = 0;
+
+                for (String s : personNames) {
+
+                    if ((s.toLowerCase().contains(userinput))) {
+                        if ((s.contains(userinput))) {
+                            s2[i++] = s;
+                        }
+                    }}
+                    // myr.getFilter().filter(newText);
+                    //   ArrayList<String> m = new ArrayList<>()
+                    //myr.updat(s2, userinput);
+                    return false;
+
+            }});
+
+        return true;
+    }
+
 }

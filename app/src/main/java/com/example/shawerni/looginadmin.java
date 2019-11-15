@@ -10,6 +10,8 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 
 public class looginadmin extends AppCompatActivity implements View.OnClickListener {
 
@@ -23,6 +25,13 @@ public class looginadmin extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_looginadmin);
 
+
+        if(FirebaseAuth.getInstance().getCurrentUser() != null){
+
+            Intent intent =new Intent(getApplicationContext() , request.class );
+            startActivity(intent);
+            finish();
+        }
 
         Login = findViewById(R.id.b1ad);
         Email = findViewById(R.id.E1ad);

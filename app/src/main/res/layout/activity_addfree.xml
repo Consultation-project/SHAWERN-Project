@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:ignore="MissingDefaultResource">
 
@@ -42,6 +42,17 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/q"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:text="Q: "
+                android:layout_toRightOf="@+id/images"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16dp" />
+
+            <TextView
                 android:id="@+id/sender1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -57,10 +68,6 @@
     </RelativeLayout>
 
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/colorPrimary"></View>
 
     <TextView
         android:id="@+id/ANSWER"
@@ -72,7 +79,7 @@
         android:layout_toRightOf="@+id/images"
         android:text="Answers:"
         android:layout_marginBottom="5dp"
-        android:textColor="#DCE1E2"
+        android:textColor="@color/colorPrimary"
         android:textSize="19dp"
         android:textStyle="bold"
         tools:ignore="InvalidId" />
@@ -132,8 +139,3 @@
 
 
 </LinearLayout>
-
-
-
-
-

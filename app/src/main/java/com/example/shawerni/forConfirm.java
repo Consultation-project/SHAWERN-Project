@@ -1,7 +1,13 @@
 package com.example.shawerni;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,8 +16,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,37 +32,40 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 
+
+
+
 public class forConfirm extends AppCompatActivity {
 
 
-    static boolean changeStatus  = false;
+    static boolean changeStatus = false;
     TextView userName;
     TextView useremail;
-    TextView consultantName ;
+    TextView consultantName;
 
-    ImageView transferImage ;
+    ImageView transferImage;
     View view;
     String USER;
-    String uId ;
+    String uId;
 
-    Button confirm ;
-    Button cancle ;
+    Button confirm;
+    Button cancle;
+    String ch="send";
+    NotificationManagerCompat nn;
     private UserInfo userInfo;
+    String id = "nn";
 
-    FirebaseDatabase database =  FirebaseDatabase.getInstance();
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference retreff = database.getReference("Confirm payments");
 
 
-
-    StorageReference storage = FirebaseStorage.getInstance().getReference ();
-
-
+    StorageReference storage = FirebaseStorage.getInstance().getReference();
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.confirmpayment_admin);
-
 
 
         Toolbar toolbar = findViewById(R.id.toolbar2);
@@ -64,26 +76,24 @@ public class forConfirm extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Booking Information");
         toolbar.setTitleTextColor(Color.WHITE);
+        nn=NotificationManagerCompat.from(this);
 
         userName = findViewById(R.id.user1);
         useremail = findViewById(R.id.eEmail);
         consultantName = findViewById(R.id.consultantName1);
         transferImage = findViewById(R.id.transfer_image);
-        confirm = findViewById (R.id.button4);
-        cancle = findViewById (R.id.button3);
+        confirm = findViewById(R.id.button4);
+        cancle = findViewById(R.id.button3);
 
-        PayConfirm PayConfirm= new PayConfirm();
-
-
-
+        PayConfirm PayConfirm = new PayConfirm();
 
 
         USER = getIntent().getStringExtra("name");
-        uId=getIntent().getStringExtra("userId");
+        uId = getIntent().getStringExtra("userId");
         userInfo = new UserInfo(this);
 
 
-        retreff.addValueEventListener(new ValueEventListener () {
+        retreff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -94,10 +104,10 @@ public class forConfirm extends AppCompatActivity {
 
                         userName.setText(USER);
                         userInfo.setKeyConName(USER);
-                        useremail.setText(Nm.getEmail ());
-                        consultantName.setText (Nm.getConsultentName ());
+                        useremail.setText(Nm.getEmail());
+                        consultantName.setText(Nm.getConsultentName());
 
-                        Picasso.get ().load(Nm.getUrl ()).into (transferImage);
+                        Picasso.get().load(Nm.getUrl()).into(transferImage);
 
                     }
 
@@ -111,32 +121,36 @@ public class forConfirm extends AppCompatActivity {
             }
         });
 
-        confirm.setOnClickListener (new View.OnClickListener () {
+        confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-
+                noty();
                 //payment_information referenceName = new payment_information();
 
                 //  referenceName.payNow.setEnabled(false);
 
+                //Intent intent2;
+                //intent2 = new Intent(forConfirm.this,wallet.class);
+                //PendingIntent pendingIntent = PendingIntent.getActivity(forConfirm.this, 0, intent2, PendingIntent.FLAG_ONE_SHOT);
 
                 changeStatus = true;
 
 
-                Intent intent = new Intent(forConfirm.this,listOfConfirm_admin.class);
+                Intent intent = new Intent(forConfirm.this, listOfConfirm_admin.class);
                 startActivity(intent);
 
                 finish();
             }
         });
 
-        cancle.setOnClickListener (new View.OnClickListener () {
+        cancle.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
 
 
-                Intent intent = new Intent(forConfirm.this,listOfConfirm_admin.class);
+                Intent intent = new Intent(forConfirm.this, listOfConfirm_admin.class);
                 startActivity(intent);
 
                 finish();
@@ -155,4 +169,44 @@ public class forConfirm extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void chmetod(View V){
+
+
+    }
+
+    public void createNot(){
+        if(Build.VERSION.SDK_INT >=Build.VERSION_CODES.O ) {
+
+            NotificationChannel CHANNEL_ID = new NotificationChannel(
+                    ch,
+                    "chan1",
+                    NotificationManager.IMPORTANCE_DEFAULT
+
+
+
+            );
+            CHANNEL_ID.enableLights(false);
+            CHANNEL_ID.enableVibration(true);
+            CHANNEL_ID.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+            CHANNEL_ID.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+            CHANNEL_ID.setDescription("vh1");
+
+            NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            mNotificationManager.createNotificationChannel(CHANNEL_ID);
+        }}
+    public void noty(){
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, ch)
+                .setSmallIcon(R.drawable.consultant_app_icon)
+                .setContentTitle("My notification")
+                .setContentText("Hello World!")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        // Set the intent that will fire when the user taps the notification
+        //.setContentIntent(pendingIntent)
+
+        NotificationManagerCompat notificationManagerCompat =NotificationManagerCompat.from(this);
+        notificationManagerCompat.notify(1, builder.build());
+    }
+
 }

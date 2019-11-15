@@ -1,13 +1,10 @@
 package com.example.shawerni;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Module {
     private String name,password,email,phoneNum,age,id ,msg;
 
 
-    public Module(String id ,String age , String email, String name, String password, String phoneNum, String msg) {
+    public Module(String id, String age, String email, String name, String password, String phoneNum, String msg) {
         this.name = name;
         this.password = password;
         this.email = email;
