@@ -134,7 +134,7 @@ public class ConsultantNewVersion extends AppCompatActivity {
 
                 for (String s : getnName()){
 
-                    if ((s.toLowerCase().contains(userinput))){
+                    if ((s.toLowerCase().startsWith(userinput))){
                         s2.add(s);
                     }
                 }

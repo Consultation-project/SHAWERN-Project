@@ -63,6 +63,7 @@
         <activity android:name=".forConfirm"></activity>
         <activity android:name=".listOfConfirm"></activity>
         <activity android:name=".ActivityMyAppoint"></activity>
+        <activity android:name=".testingClass"></activity>
     </application>
 
 </manifest>
