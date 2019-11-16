@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/bg"
     tools:ignore="MissingDefaultResource">
 
 
@@ -35,8 +34,8 @@
         android:fontFamily="sans-serif-medium"
         android:lineSpacingExtra="8sp"
         android:text="public requests"
-        android:textColor="@color/white"
-        android:textSize="25dp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="22dp"
         android:textAllCaps="true"
         android:textStyle="bold" />
 
