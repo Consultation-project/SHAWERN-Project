@@ -17,20 +17,11 @@
         android:background="@drawable/untitleddesign">
 
 
-        <ImageView
-            android:layout_width="125dp"
-            android:layout_height="122dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="95dp"
-            android:background="@drawable/user"
-            tools:layout_editor_absoluteX="145dp"
-            tools:layout_editor_absoluteY="130dp" />
-
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="180dp"
             android:orientation="horizontal"
             android:layout_gravity="center">
 
