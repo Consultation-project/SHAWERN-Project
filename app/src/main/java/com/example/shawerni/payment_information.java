@@ -179,6 +179,7 @@ public class payment_information extends AppCompatActivity {
         if(waiting == true){
             payNow.setBackgroundColor(Color.GRAY);
             payNow.setEnabled(false);
+            Toast.makeText(payment_information.this, "wait until get approval from admin", Toast.LENGTH_SHORT).show();
         }
     }
 
