@@ -298,6 +298,7 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
 
 
 
+
         //progressDialog.setMessage("waiting please...");
         //progressDialog.show();
 
