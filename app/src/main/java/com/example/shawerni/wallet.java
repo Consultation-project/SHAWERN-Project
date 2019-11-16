@@ -4,6 +4,7 @@ package com.example.shawerni;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
@@ -141,9 +142,13 @@ public class wallet extends Fragment {
                 if (forConfirm.changeStatus == true ){
 
                     holder.status.setText ("Paid");
-                    holder.paid.setEnabled(false);
+                    holder.paid.setVisibility(View.GONE);
                 }
 
+                if (payment_information.waiting == true){
+                    holder.status.setText ("waiting");
+
+                }
 
                 /*on list >> clicking item, then, go to single user profile*/
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
