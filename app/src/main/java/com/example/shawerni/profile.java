@@ -31,7 +31,6 @@ public class profile extends Fragment implements View.OnClickListener {
 
     EditText userName;
     EditText email;
-    EditText password;
     EditText phone;
     EditText age ;
     Button save;
@@ -68,7 +67,6 @@ public class profile extends Fragment implements View.OnClickListener {
 
         userName = (EditText) view.findViewById(R.id.eName);
         email = (EditText) view.findViewById(R.id.eEmail);
-        password = (EditText) view.findViewById(R.id.ePassword);
         phone = (EditText) view.findViewById(R.id.ePhone);
         age = (EditText) view.findViewById(R.id.eeage);
 
@@ -99,7 +97,6 @@ public class profile extends Fragment implements View.OnClickListener {
                 //userdrawer.setText(dataSnapshot.child("name").getValue().toString());
                 email.setText(dataSnapshot.child("email").getValue().toString());
                 // emaildrawer.setText(dataSnapshot.child("email").getValue().toString());
-                password.setText(dataSnapshot.child("password").getValue().toString());
                 phone.setText(dataSnapshot.child("phoneNum").getValue().toString());
                 age.setText(dataSnapshot.child("age").getValue().toString());
 
@@ -190,10 +187,9 @@ public class profile extends Fragment implements View.OnClickListener {
     boolean checkDataEntered() {
 
 
-        if (isEmpty((EditText) userName)&&(isEmpty(password))
+        if (isEmpty((EditText) userName)
                 &&(isEmpty(phone))&& (isEmpty(age))&& (isEmpty(email))) {
             userName.setError("You must enter name!");
-            password.setError("password is required!");
             phone.setError("Phone number is required!");
             age.setError("age is required!");
             email.setError("Enter valid email!");
@@ -204,14 +200,7 @@ public class profile extends Fragment implements View.OnClickListener {
             return false;
         }
 
-        if (isEmpty(password)) {
-            password.setError("password is required!");
-            return false;
-        }
-        if( password.getText().toString().length()<=6){
-            password.setError("Please Your Password Need to Contain 6 Charecters or More ");
-            return false;
-        }
+
 
         if (!isEmail(email)||(!email.getText().toString().substring(email.getText().toString().indexOf(".")+1).equals("com"))){
             email.setError("Enter valid email!");
@@ -257,7 +246,7 @@ public class profile extends Fragment implements View.OnClickListener {
         HashMap<String , Object> map = new HashMap <>();
         map.put("name", userName.getText().toString());
         map.put("email",email.getText().toString());
-        map.put("password",password.getText().toString());
+
         map.put("phoneNum",phone.getText().toString());
         map.put("age", age.getText().toString());
         ref2.updateChildren(map);
