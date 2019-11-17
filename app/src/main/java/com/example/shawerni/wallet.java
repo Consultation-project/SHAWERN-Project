@@ -167,12 +167,12 @@ public class wallet extends Fragment {
                         //  appointDatabaseReference.child( Day +"-"+(Month+1)+"-"+Year).child(postKey).child("status").setValue("Y");
                         //   updateAppo(appointDatabaseReference.child( Day +"-"+(Integer.parseInt(Month)+1)+"-"+Year).child(postKey));
                         String visit_user_id = getRef(position).getKey();
-                  //    if (forConfirm.changeStatus != true) {
-                   //       Intent intent = new Intent (getActivity (), MainActivity.class);
+                        //    if (forConfirm.changeStatus != true) {
+                        //       Intent intent = new Intent (getActivity (), MainActivity.class);
 
-                     //     intent.putExtra ("visitUserId", visit_user_id);
-                     //     startActivity (intent);
-                   //   }
+                        //     intent.putExtra ("visitUserId", visit_user_id);
+                        //     startActivity (intent);
+                        //   }
 
                     }
                 });
