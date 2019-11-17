@@ -144,15 +144,22 @@ public class wallet extends Fragment {
                     holder.status.setText ("Paid");
                     holder.paid.setVisibility(View.GONE);
                     payment_information.waiting = false;
+                    payment_information.waiting1 = false;
                 }
 
                 if(forConfirm.changeStatus1 == true){
 
                     holder.status.setText ("not Paid");
                     payment_information.waiting = false;
+                    payment_information.waiting1 = false;
                 }
 
                 if (payment_information.waiting == true){
+                    holder.status.setText ("waiting");
+
+                }
+
+                if (payment_information.waiting1 == true){
                     holder.status.setText ("waiting");
 
                 }
