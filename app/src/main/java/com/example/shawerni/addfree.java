@@ -45,8 +45,10 @@ public class addfree extends AppCompatActivity {
         sender = findViewById(R.id.Name2);
 
 
-        con = getIntent().getExtras().getString("Value2");
+        con = getIntent().getExtras().getString("text");
         tvcon.setText(con);
+
+
         Toolbar toolbar = findViewById(R.id.toolbar20);
         setSupportActionBar(toolbar);
 
