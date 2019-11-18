@@ -6,8 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/sha2">
+    android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
@@ -17,10 +16,9 @@
         >
 
     </androidx.appcompat.widget.Toolbar>
-<LinearLayout
+    <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center"
     android:orientation="horizontal"
     android:layout_marginTop="180dp">
 
@@ -28,7 +26,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_gravity="center"
+        android:layout_gravity="left"
+        android:layout_marginLeft="80dp"
         android:fontFamily="sans-serif-medium"
         android:lineSpacingExtra="8sp"
         android:text="From:  "
@@ -36,17 +35,18 @@
         android:textSize="12dp"
         android:textStyle="bold" />
 
-    <TextView android:id="@+id/sendername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:fontFamily="sans-serif-medium"
-        android:lineSpacingExtra="8sp"
-        android:text="lolo"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textSize="12dp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/sendername"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:lineSpacingExtra="8sp"
+            android:text="lolo"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="12dp"
+            android:textStyle="bold" />
 
 
 </LinearLayout>
@@ -61,16 +61,16 @@
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:lineSpacingExtra="8sp"
-        android:background="@color/white"
         android:text="What is the side effect of this drug ..."
         android:textColor="@color/colorPrimary"
         android:textSize="14dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:background="@drawable/whitebg"/>
 
     <Button
         android:id="@+id/Answer"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/border"
         android:layout_marginTop="40dp"
         android:layout_gravity="center"
@@ -78,12 +78,14 @@
         android:text="Answer"
         tools:layout_editor_absoluteX="154dp"
         tools:layout_editor_absoluteY="550dp"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.939"/>
+
+
 
 </LinearLayout>

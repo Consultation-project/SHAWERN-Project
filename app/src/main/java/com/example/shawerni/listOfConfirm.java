@@ -59,7 +59,10 @@ public class listOfConfirm extends RecyclerView.Adapter<listOfConfirm.ViewHolder
 
             }
         });
+        if(forConfirm.deleteFromList == true){
+            holder.paerntlyout.setVisibility(View.GONE);
 
+        }
     }
 
     @Override

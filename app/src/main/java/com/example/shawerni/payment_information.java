@@ -55,6 +55,7 @@ public class payment_information extends AppCompatActivity {
     Uri pickedImageUri ;
     String url;
 
+    static boolean waiting = false;
     private FirebaseAuth f1 = FirebaseAuth.getInstance();
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -169,11 +170,17 @@ public class payment_information extends AppCompatActivity {
                 if (checkDataEntered()){
 
                 }
+                waiting = true;
 
 
             }
-        });
 
+        });
+        if(waiting == true){
+            payNow.setBackgroundColor(Color.GRAY);
+            payNow.setEnabled(false);
+            Toast.makeText(payment_information.this, "wait until get approval from admin", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private boolean checkDataEntered() {

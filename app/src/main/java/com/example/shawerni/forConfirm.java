@@ -39,6 +39,9 @@ public class forConfirm extends AppCompatActivity {
 
 
     static boolean changeStatus = false;
+    static boolean changeStatus1 = false;
+
+    static boolean deleteFromList = false;
     TextView userName;
     TextView useremail;
     TextView consultantName;
@@ -135,7 +138,7 @@ public class forConfirm extends AppCompatActivity {
                 //PendingIntent pendingIntent = PendingIntent.getActivity(forConfirm.this, 0, intent2, PendingIntent.FLAG_ONE_SHOT);
 
                 changeStatus = true;
-
+                deleteFromList = true;
 
                 Intent intent = new Intent(forConfirm.this, listOfConfirm_admin.class);
                 startActivity(intent);
@@ -149,7 +152,8 @@ public class forConfirm extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
+                changeStatus1 = true;
+                deleteFromList = true;
                 Intent intent = new Intent(forConfirm.this, listOfConfirm_admin.class);
                 startActivity(intent);
 

@@ -211,43 +211,42 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
 
         if (isEmpty(Name)&&isEmpty(password)&&isEmpty(email)&&isEmpty(confirmPassword)&&isEmpty(PhoneNum)&&(isEmpty(Major)&& pickedImageUri == null)){
 
-            Name.setError("You must enter  name to register!");
-            password.setError("password is required!");
-            password.setError("Please Your Password Need to Contain 6 Charecters or More ");
-            email.setError("email is required!");
-            confirmPassword.setError("confirmPassword is required!");
+            Name.setError("Name is required!");
+            password.setError("Password is required!");
+            password.setError("Please your password need to contain 6 charecters or more ");
+            email.setError("Email is required!");
+            confirmPassword.setError("ConfirmPassword is required!");
             PhoneNum.setError("PhoneNum is required!");
-            Major.setError("major is required!");
-            CVLable.setError(" Please Choose Image  ");
+            Major.setError("Major is required!");
             return false;
         }
         if (isEmpty(Name)) {
-           Name.setError("You must enter  name to register!");
+           Name.setError("Name is required!");
 
             return false;
 
         }
 
         if (isEmpty(password)) {
-            password.setError("password is required!");
+            password.setError("Password is required!");
             return false;
 
         }
 
         if( password.getText().toString().length()<=6){
-            password.setError("Please Your Password Need to Contain 6 Charecters or More ");
+            password.setError("Please your password need to contain 6 charecters or more ");
             return false;
         }
 
 
         if (isEmpty(email)) {
-            email.setError("email is required!");
+            email.setError("Email is required!");
             return false;
 
         }
 
         if (isEmpty(confirmPassword)) {
-            confirmPassword.setError("confirmPassword is required!");
+            confirmPassword.setError("ConfirmPassword is required!");
             return false;
 
         }
@@ -266,13 +265,13 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
         String MobilePattern = "[0-9]{10}";
         final String num = "05";
         if((!PhoneNum.getText().toString().matches(MobilePattern))||(!PhoneNum.getText().toString().substring(0,2).matches(num))) {
-            PhoneNum.setError("not corect Number , please try again");
+            PhoneNum.setError("Not corect Number , please try again");
             return false;
 
         }
 
         if (! password.getText().toString().matches(confirmPassword.getText().toString())) {
-            confirmPassword.setError("password not equal , please try again");
+            confirmPassword.setError("Password not equal , please try again");
             return false;
 
         }
@@ -285,17 +284,18 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
 
 
         if (isEmpty(Major)) {
-            Major.setError("major is required!");
+            Major.setError("Major is required!");
             return false;
 
         }
 
         if ( pickedImageUri == null){
 
-            CVLable.setError(" Please Choose Image  ");
-            CVLable.findFocus();
+
+            Toast.makeText(RegisterCon_Activity.this,"Please choose image!",Toast.LENGTH_LONG).show();
             return false;
         }
+
 
 
 

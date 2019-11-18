@@ -6,8 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/sha2">
+    android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
@@ -17,12 +16,14 @@
         >
 
     </androidx.appcompat.widget.Toolbar>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:layout_marginTop="@dimen/dimen_10"
-    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:orientation="horizontal">
 
     <TextView
         android:id="@+id/from"
@@ -65,7 +66,7 @@
         android:layout_marginBottom="60dp"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        android:background="@color/white"
+        android:background="@drawable/whitebg"
         android:lineSpacingExtra="8sp"
         android:text="What is the side effect of this drug ..."
         android:textColor="@color/colorPrimary"
@@ -79,16 +80,15 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/ic_question_answer_black_24dp"
         android:layout_marginLeft="80dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="@dimen/dimen_10"
-        />
+        android:background="@drawable/ic_question_answer_black_24dp" />
 
     <TextView
         android:id="@+id/con"
         android:layout_width="wrap_content"
-        android:layout_height="27dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
@@ -105,7 +105,7 @@
         android:layout_height="99dp"
         android:layout_gravity="center"
         android:layout_marginBottom="60dp"
-        android:background="@color/white"
+        android:background="@drawable/whitebg"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:lineSpacingExtra="8sp"

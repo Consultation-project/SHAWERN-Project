@@ -4,6 +4,7 @@ package com.example.shawerni;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
@@ -141,9 +142,20 @@ public class wallet extends Fragment {
                 if (forConfirm.changeStatus == true ){
 
                     holder.status.setText ("Paid");
-                    holder.paid.setEnabled(false);
+                    holder.paid.setVisibility(View.GONE);
+                    payment_information.waiting = false;
                 }
 
+                if(forConfirm.changeStatus1 == true){
+
+                    holder.status.setText ("not Paid");
+                    payment_information.waiting = false;
+                }
+
+                if (payment_information.waiting == true){
+                    holder.status.setText ("waiting");
+
+                }
 
                 /*on list >> clicking item, then, go to single user profile*/
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -161,11 +173,12 @@ public class wallet extends Fragment {
                         //  appointDatabaseReference.child( Day +"-"+(Month+1)+"-"+Year).child(postKey).child("status").setValue("Y");
                         //   updateAppo(appointDatabaseReference.child( Day +"-"+(Integer.parseInt(Month)+1)+"-"+Year).child(postKey));
                         String visit_user_id = getRef(position).getKey();
-                        Intent intent = new Intent( getActivity(), MainActivity.class);
+                        //    if (forConfirm.changeStatus != true) {
+                        //       Intent intent = new Intent (getActivity (), MainActivity.class);
 
-                        intent.putExtra("visitUserId", visit_user_id);
-                        startActivity(intent);
-
+                        //     intent.putExtra ("visitUserId", visit_user_id);
+                        //     startActivity (intent);
+                        //   }
 
                     }
                 });
