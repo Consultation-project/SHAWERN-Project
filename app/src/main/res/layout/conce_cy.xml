@@ -3,21 +3,57 @@
 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="12dp"
     android:id="@+id/paernt"
-    android:background="@drawable/whitborder" >
+    android:layout_marginBottom="2dp"
+    android:background="@drawable/whitebg"
+    >
 
-
-    <TextView
-        android:id="@+id/Name2"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name"
-        android:textSize="16dp"
-        android:textColor="@color/colorPrimary"
-        android:layout_gravity="center">
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/user">
+
+        </ImageView>
 
 
-    </TextView>
+        <TextView
+            android:id="@+id/Name2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_gravity="center">
+
+
+        </TextView>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgVwArrow"
+        android:layout_width="187dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="-63dp"
+        android:layout_marginRight="-63dp"
+        android:gravity="center"
+        android:tint="@color/colorPrimary"
+        app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp" />
+
+
+
+
 
 </RelativeLayout>
