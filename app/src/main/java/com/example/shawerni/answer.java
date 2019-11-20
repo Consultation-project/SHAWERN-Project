@@ -11,8 +11,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -99,6 +101,7 @@ public class answer extends AppCompatActivity {
                                         final String input = userInput.getText().toString();
                                         final String Sender = sender.getText().toString();
 
+                                        if(!(input.length()<=0)){
 
 
 
@@ -139,7 +142,23 @@ public class answer extends AppCompatActivity {
                                         startActivity(intent1);
 
 
+
+
+
+                                        }else{
+                                            Toast.makeText(answer.this, "Couldn't answer , please enter a valid message to answer", Toast.LENGTH_LONG).show();
+                                        }
+
+
+
+
                                     }
+
+
+
+
+
+
 
 
                                 }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -156,6 +175,7 @@ public class answer extends AppCompatActivity {
             }
 
         });
+
 
 
     }

@@ -138,7 +138,7 @@ public class ConsultantNewVersion extends AppCompatActivity {
                         s2.add(s);
                     }
                 }
-               // myr.getFilter().filter(newText);
+              // myr.getFilter().filter(newText);
                 myr.updat(s2, userinput);
                 return false;
             }

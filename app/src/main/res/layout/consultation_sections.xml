@@ -44,7 +44,7 @@
             android:id="@+id/img_public"
             android:layout_width="217dp"
             android:layout_height="179dp"
-            android:background="@drawable/publicimg"
+            android:background="@drawable/privateimg"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="98dp"
             tools:layout_editor_absoluteY="125dp" />

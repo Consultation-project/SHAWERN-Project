@@ -30,6 +30,7 @@ setTitle("");
             public void onClick(View v) {
                 Intent i = new Intent(Registeration_sections.this, LoginActivity_Con.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -39,6 +40,7 @@ setTitle("");
             public void onClick(View v) {
                 Intent i = new Intent(Registeration_sections.this, LoginActivity.class);
                 startActivity(i);
+                finish();
             }
         });
         admin = findViewById(R.id.admin);
@@ -47,6 +49,7 @@ setTitle("");
             public void onClick(View v) {
                 Intent i = new Intent(Registeration_sections.this, looginadmin.class);
                 startActivity(i);
+                finish();
             }
         });
 
