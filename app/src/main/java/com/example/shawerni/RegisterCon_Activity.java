@@ -72,7 +72,7 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
 
     private final DatabaseReference myRef = database.getReference("Consultant Request");
 
-
+    StorageReference storage = FirebaseStorage.getInstance().getReference ();
 
 
     @Override
@@ -151,36 +151,7 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
             @Override
             public void onClick(View view) {
                 if (checkDataEntered()){
-                    Calendar calendar = Calendar.getInstance();
 
-                    //progressDialog.setMessage("wait for upload the image ...");
-                    //progressDialog.show();
-
-                    StorageReference storage = FirebaseStorage.getInstance().getReference ();
-                    final StorageReference storageRef = storage.child ("consultantCV").child ("img_"+calendar.getTimeInMillis());
-                    storageRef.putFile (pickedImageUri).addOnSuccessListener (new OnSuccessListener<UploadTask.TaskSnapshot> () {
-
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            storageRef.getDownloadUrl ().addOnSuccessListener (new OnSuccessListener<Uri> () {
-                                @Override
-                                public void onSuccess(Uri uri) {
-
-                                    url=String.valueOf(pickedImageUri);
-                                }
-                            });
-
-                            //progressDialog.dismiss();
-                         //   Toast.makeText(RegisterCon_Activity.this , "image uploaded successfully",Toast.LENGTH_LONG).show();
-
-                        }
-                        }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-
-                            Toast.makeText(RegisterCon_Activity.this,"the image upload process failed , try again!",Toast.LENGTH_LONG).show();
-                        }
-                    });
                 }
 
             }
@@ -311,12 +282,45 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
                         //progressDialog.dismiss();
                         if(task.isSuccessful()){
 
-                            String uid = f1.getCurrentUser().getUid();
-                            String id = myRef.push().getKey();
-                            ConModule  m =new ConModule(id,Major.getText().toString(),email.getText().toString(),Name.getText().toString()
-                                    ,password.getText().toString(),PhoneNum.getText().toString(),url);
 
-                            myRef.child(uid).setValue(m);
+
+                            final StorageReference storageRef = storage.child ("consultantCV").child (  System.currentTimeMillis () + "."+ getFileExtension (pickedImageUri));
+
+                            storageRef.putFile (pickedImageUri).addOnSuccessListener (new OnSuccessListener<UploadTask.TaskSnapshot> () {
+
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+
+                                    storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
+                                            Uri downloadUrl = uri;
+
+
+
+                                            String uid = f1.getCurrentUser().getUid();
+                                            String id = myRef.push().getKey();
+
+                                            ConModule  m =new ConModule(id,Major.getText().toString(),email.getText().toString(),Name.getText().toString()
+                                                    ,password.getText().toString(),PhoneNum.getText().toString(),downloadUrl.toString ());
+
+                                            myRef.child(uid).setValue(m);
+
+                                        }
+
+
+
+                                    });
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+
+                                    Toast.makeText(RegisterCon_Activity.this,"the image upload process failed , try again!",Toast.LENGTH_LONG).show();
+                                }
+                            });
+
 
 
 
@@ -356,6 +360,15 @@ public class RegisterCon_Activity extends AppCompatActivity implements View.OnCl
             pickedImageUri=data.getData();
             CVImage.setImageURI(pickedImageUri);
         }
+
+    }
+
+    private String getFileExtension (Uri uri){
+
+        ContentResolver cR = getContentResolver ();
+        MimeTypeMap mime = MimeTypeMap.getSingleton ();
+        return mime.getExtensionFromMimeType (cR.getType (uri));
+
 
     }
 
